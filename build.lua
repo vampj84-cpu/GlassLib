@@ -123,13 +123,13 @@ for _, filePath in ipairs(MODULE_ORDER) do
 			local modified = ln
 			-- require(script:WaitForChild("xxx"))
 			modified = modified:gsub('require%(%s*script:WaitForChild%("([^"]+)"%)%)', function(name)
-				return '_MODULES["' .. name .. '"]'
+				return 'require("' .. name .. '")'
 			end)
 			-- require(script.Parent.elements.xxx) or require(script.Parent.Parent.xxx)
 			-- Just grab the last identifier before the closing paren
 			modified = modified:gsub('require%(script%.([%w%.]+)%)', function(path)
 				local last = path:match("(%w+)$")
-				return '_MODULES["' .. last .. '"]'
+				return 'require("' .. last .. '")'
 			end)
 			insert(outLines, modified)
 		end

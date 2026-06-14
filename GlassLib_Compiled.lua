@@ -256,7 +256,7 @@ _MODULES["theme"] = function()
     Theme management with save/load, preset themes
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local Theme = {}
 Theme.__index = Theme
@@ -459,7 +459,7 @@ _MODULES["acrylic"] = function()
     3D glass blur effects, acrylic panels
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local Acrylic = {}
 
@@ -600,7 +600,7 @@ _MODULES["config"] = function()
     Element save/load using class parsers
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local Config = {}
 Config.__index = Config
@@ -749,7 +749,7 @@ _MODULES["notify"] = function()
     Toast notifications with liquid glass style
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local Notify = {}
 Notify.__index = Notify
@@ -938,7 +938,7 @@ _MODULES["dialog"] = function()
     Modal dialogs and confirmation prompts
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local Dialog = {}
 Dialog.__index = Dialog
@@ -1123,7 +1123,7 @@ _MODULES["toggle"] = function()
     Floating toggle button for showing/hiding the UI
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local ToggleBtn = {}
 ToggleBtn.__index = ToggleBtn
@@ -1274,16 +1274,16 @@ _MODULES["elements"] = function()
 
 local Elements = {}
 
-Elements.Button = _MODULES["button"]
-Elements.Toggle = _MODULES["toggle"]
-Elements.Slider = _MODULES["slider"]
-Elements.Dropdown = _MODULES["dropdown"]
-Elements.TextInput = _MODULES["textinput"]
-Elements.Keybind = _MODULES["keybind"]
-Elements.ColorPicker = _MODULES["colorpicker"]
-Elements.Label = _MODULES["label"]
-Elements.Paragraph = _MODULES["paragraph"]
-Elements.Divider = _MODULES["divider"]
+Elements.Button = require("button")
+Elements.Toggle = require("toggle")
+Elements.Slider = require("slider")
+Elements.Dropdown = require("dropdown")
+Elements.TextInput = require("textinput")
+Elements.Keybind = require("keybind")
+Elements.ColorPicker = require("colorpicker")
+Elements.Label = require("label")
+Elements.Paragraph = require("paragraph")
+Elements.Divider = require("divider")
 
 return Elements
 end
@@ -1294,7 +1294,7 @@ _MODULES["button"] = function()
     GlassLib - Button Element
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local Button = {}
 Button.__index = Button
@@ -1420,7 +1420,7 @@ _MODULES["toggle"] = function()
     GlassLib - Toggle Element
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local Toggle = {}
 Toggle.__index = Toggle
@@ -1584,7 +1584,7 @@ _MODULES["slider"] = function()
     GlassLib - Slider Element
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local Slider = {}
 Slider.__index = Slider
@@ -1764,7 +1764,7 @@ _MODULES["dropdown"] = function()
     GlassLib - Dropdown Element
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local Dropdown = {}
 Dropdown.__index = Dropdown
@@ -2004,7 +2004,7 @@ _MODULES["textinput"] = function()
     GlassLib - TextInput Element
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local TextInput = {}
 TextInput.__index = TextInput
@@ -2123,7 +2123,7 @@ _MODULES["keybind"] = function()
     GlassLib - Keybind Element
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local Keybind = {}
 Keybind.__index = Keybind
@@ -2239,7 +2239,7 @@ _MODULES["colorpicker"] = function()
     GlassLib - ColorPicker Element
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local ColorPicker = {}
 ColorPicker.__index = ColorPicker
@@ -2409,7 +2409,7 @@ _MODULES["label"] = function()
     GlassLib - Label Element
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local Label = {}
 Label.__index = Label
@@ -2477,7 +2477,7 @@ _MODULES["paragraph"] = function()
     Rich text paragraph with title and body
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local Paragraph = {}
 Paragraph.__index = Paragraph
@@ -2562,7 +2562,7 @@ _MODULES["divider"] = function()
     GlassLib - Divider Element
 ]]
 
-local Util = _MODULES["util"]
+local Util = require("util")
 
 local Divider = {}
 Divider.__index = Divider
@@ -2597,8 +2597,8 @@ _MODULES["section"] = function()
     Section containers that hold elements
 ]]
 
-local Util = _MODULES["util"]
-local Elements = _MODULES["elements"]
+local Util = require("util")
+local Elements = require("elements")
 
 local Section = {}
 Section.__index = Section
@@ -2758,8 +2758,8 @@ _MODULES["tab"] = function()
     Tab system with sidebar buttons and content areas
 ]]
 
-local Util = _MODULES["util"]
-local Section = _MODULES["section"]
+local Util = require("util")
+local Section = require("section")
 
 local Tab = {}
 Tab.__index = Tab
@@ -2904,9 +2904,9 @@ _MODULES["window"] = function()
     Window creation, dragging, sidebar, header, content area
 ]]
 
-local Util = _MODULES["util"]
-local Acrylic = _MODULES["acrylic"]
-local Tab = _MODULES["tab"]
+local Util = require("util")
+local Acrylic = require("acrylic")
+local Tab = require("tab")
 
 local Window = {}
 Window.__index = Window
@@ -3383,14 +3383,14 @@ GlassLib.__index = GlassLib
 -- MODULES
 -- ══════════════════════════════════════════════════════════════
 
-local Util = _MODULES["util"]
-local Theme = _MODULES["theme"]
-local Acrylic = _MODULES["acrylic"]
-local Notify = _MODULES["notify"]
-local Config = _MODULES["config"]
-local Dialog = _MODULES["dialog"]
-local ToggleBtn = _MODULES["toggle"]
-local Window = _MODULES["window"]
+local Util = require("util")
+local Theme = require("theme")
+local Acrylic = require("acrylic")
+local Notify = require("notify")
+local Config = require("config")
+local Dialog = require("dialog")
+local ToggleBtn = require("toggle")
+local Window = require("window")
 
 -- ══════════════════════════════════════════════════════════════
 -- CONSTRUCTOR
