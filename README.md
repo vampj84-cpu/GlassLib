@@ -16,15 +16,13 @@ Liquid glass UI library for Roblox exploits. Modular, themed, and animated.
 
 ## Installation
 
-### Option 1: Raw loadstring (single file)
-
-Build the compiled file first (see [Building](#building)), then:
+### Loadstring (recommended)
 
 ```lua
 local GlassLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/vampj84-cpu/GlassLib/main/GlassLib_Compiled.lua"))()
 ```
 
-### Option 2: Module-based
+### Module-based
 
 Clone the repo and use a module loader or [Rojo](https://rojo.space/):
 
@@ -35,7 +33,7 @@ local GlassLib = require(path.to.GlassLib)
 ## Quick Start
 
 ```lua
-local GlassLib = loadstring(game:HttpGet("URL"))()
+local GlassLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/vampj84-cpu/GlassLib/main/GlassLib_Compiled.lua"))()
 
 -- Set theme
 GlassLib:SetTheme("Dark")
