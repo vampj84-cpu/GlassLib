@@ -1,6 +1,6 @@
 --[[
     GlassLib - Theme Module
-    Theme management with save/load, preset themes
+    Liquid glass themes with depth
 ]]
 
 local Util = require(script.Parent.util)
@@ -8,110 +8,113 @@ local Util = require(script.Parent.util)
 local Theme = {}
 Theme.__index = Theme
 
--- ══════════════════════════════════════════════════════════════
--- BUILT-IN THEMES
--- ══════════════════════════════════════════════════════════════
-
 Theme.Presets = {
-	Dark = {
-		Accent = Color3.fromHex("#6366f1"),
-		AccentLight = Color3.fromHex("#818cf8"),
-		Background = Color3.fromHex("#09090b"),
-		Surface = Color3.fromHex("#18181b"),
-		SurfaceLight = Color3.fromHex("#27272a"),
-		Border = Color3.fromHex("#3f3f46"),
-		Text = Color3.fromHex("#fafafa"),
-		TextSecondary = Color3.fromHex("#a1a1aa"),
-		TextMuted = Color3.fromHex("#52525b"),
-		Success = Color3.fromHex("#34d399"),
-		Warning = Color3.fromHex("#fbbf24"),
-		Danger = Color3.fromHex("#f87171"),
-	},
-	Midnight = {
-		Accent = Color3.fromHex("#06b6d4"),
-		AccentLight = Color3.fromHex("#22d3ee"),
-		Background = Color3.fromHex("#0c0c14"),
-		Surface = Color3.fromHex("#141420"),
-		SurfaceLight = Color3.fromHex("#1e1e2e"),
-		Border = Color3.fromHex("#2a2a3a"),
-		Text = Color3.fromHex("#f0f0f5"),
-		TextSecondary = Color3.fromHex("#8888aa"),
-		TextMuted = Color3.fromHex("#4a4a5a"),
-		Success = Color3.fromHex("#34d399"),
-		Warning = Color3.fromHex("#fbbf24"),
-		Danger = Color3.fromHex("#f87171"),
-	},
-	Aurora = {
-		Accent = Color3.fromHex("#a855f7"),
-		AccentLight = Color3.fromHex("#c084fc"),
-		Background = Color3.fromHex("#0a0a10"),
-		Surface = Color3.fromHex("#16161e"),
-		SurfaceLight = Color3.fromHex("#22222e"),
-		Border = Color3.fromHex("#333344"),
-		Text = Color3.fromHex("#f5f5ff"),
-		TextSecondary = Color3.fromHex("#9999bb"),
-		TextMuted = Color3.fromHex("#555566"),
-		Success = Color3.fromHex("#34d399"),
-		Warning = Color3.fromHex("#fbbf24"),
-		Danger = Color3.fromHex("#f87171"),
+	Glass = {
+		Accent = Color3.fromHex("#7c6bf0"),
+		AccentLight = Color3.fromHex("#a5a0f7"),
+		Background = Color3.fromHex("#1a1a2e"),
+		Surface = Color3.fromHex("#ffffff"),
+		SurfaceLight = Color3.fromHex("#ffffff"),
+		Border = Color3.fromHex("#ffffff"),
+		Text = Color3.fromHex("#ffffff"),
+		TextSecondary = Color3.fromHex("#c4c4d4"),
+		TextMuted = Color3.fromHex("#7a7a8e"),
+		Success = Color3.fromHex("#5de8a0"),
+		Warning = Color3.fromHex("#f5c542"),
+		Danger = Color3.fromHex("#f06b7c"),
+		GlassTint = Color3.fromHex("#ffffff"),
+		GlassStroke = Color3.fromHex("#e0e0ff"),
 	},
 	Frost = {
-		Accent = Color3.fromHex("#10b981"),
-		AccentLight = Color3.fromHex("#34d399"),
-		Background = Color3.fromHex("#080c10"),
-		Surface = Color3.fromHex("#121820"),
-		SurfaceLight = Color3.fromHex("#1c242e"),
-		Border = Color3.fromHex("#2a3440"),
-		Text = Color3.fromHex("#f0faf5"),
-		TextSecondary = Color3.fromHex("#88aa99"),
-		TextMuted = Color3.fromHex("#4a5a55"),
-		Success = Color3.fromHex("#34d399"),
-		Warning = Color3.fromHex("#fbbf24"),
-		Danger = Color3.fromHex("#f87171"),
+		Accent = Color3.fromHex("#38bdf8"),
+		AccentLight = Color3.fromHex("#7dd3fc"),
+		Background = Color3.fromHex("#0f172a"),
+		Surface = Color3.fromHex("#ffffff"),
+		SurfaceLight = Color3.fromHex("#ffffff"),
+		Border = Color3.fromHex("#ffffff"),
+		Text = Color3.fromHex("#f0f9ff"),
+		TextSecondary = Color3.fromHex("#bae6fd"),
+		TextMuted = Color3.fromHex("#4a6a80"),
+		Success = Color3.fromHex("#4ade80"),
+		Warning = Color3.fromHex("#facc15"),
+		Danger = Color3.fromHex("#fb7185"),
+		GlassTint = Color3.fromHex("#e0f2fe"),
+		GlassStroke = Color3.fromHex("#bae6fd"),
 	},
-	Amber = {
-		Accent = Color3.fromHex("#f59e0b"),
-		AccentLight = Color3.fromHex("#fbbf24"),
-		Background = Color3.fromHex("#0c0a08"),
-		Surface = Color3.fromHex("#1a1612"),
-		SurfaceLight = Color3.fromHex("#262018"),
-		Border = Color3.fromHex("#3a3228"),
-		Text = Color3.fromHex("#fefce8"),
-		TextSecondary = Color3.fromHex("#aaaa88"),
-		TextMuted = Color3.fromHex("#5a5544"),
-		Success = Color3.fromHex("#34d399"),
-		Warning = Color3.fromHex("#fbbf24"),
-		Danger = Color3.fromHex("#f87171"),
+	Aurora = {
+		Accent = Color3.fromHex("#c084fc"),
+		AccentLight = Color3.fromHex("#d8b4fe"),
+		Background = Color3.fromHex("#1a0a2e"),
+		Surface = Color3.fromHex("#ffffff"),
+		SurfaceLight = Color3.fromHex("#ffffff"),
+		Border = Color3.fromHex("#ffffff"),
+		Text = Color3.fromHex("#faf5ff"),
+		TextSecondary = Color3.fromHex("#d8b4fe"),
+		TextMuted = Color3.fromHex("#6a5080"),
+		Success = Color3.fromHex("#86efac"),
+		Warning = Color3.fromHex("#fde047"),
+		Danger = Color3.fromHex("#fda4af"),
+		GlassTint = Color3.fromHex("#f3e8ff"),
+		GlassStroke = Color3.fromHex("#d8b4fe"),
 	},
 	Rose = {
-		Accent = Color3.fromHex("#f43f5e"),
-		AccentLight = Color3.fromHex("#fb7185"),
-		Background = Color3.fromHex("#0c0809"),
-		Surface = Color3.fromHex("#1a1214"),
-		SurfaceLight = Color3.fromHex("#26181c"),
-		Border = Color3.fromHex("#3a2830"),
+		Accent = Color3.fromHex("#f472b6"),
+		AccentLight = Color3.fromHex("#f9a8d4"),
+		Background = Color3.fromHex("#1a0a14"),
+		Surface = Color3.fromHex("#ffffff"),
+		SurfaceLight = Color3.fromHex("#ffffff"),
+		Border = Color3.fromHex("#ffffff"),
 		Text = Color3.fromHex("#fff1f2"),
-		TextSecondary = Color3.fromHex("#aa8890"),
-		TextMuted = Color3.fromHex("#5a4448"),
-		Success = Color3.fromHex("#34d399"),
-		Warning = Color3.fromHex("#fbbf24"),
-		Danger = Color3.fromHex("#f87171"),
+		TextSecondary = Color3.fromHex("#fecdd3"),
+		TextMuted = Color3.fromHex("#8a5060"),
+		Success = Color3.fromHex("#86efac"),
+		Warning = Color3.fromHex("#fde047"),
+		Danger = Color3.fromHex("#fb7185"),
+		GlassTint = Color3.fromHex("#ffe4e6"),
+		GlassStroke = Color3.fromHex("#fecdd3"),
+	},
+	Emerald = {
+		Accent = Color3.fromHex("#34d399"),
+		AccentLight = Color3.fromHex("#6ee7b7"),
+		Background = Color3.fromHex("#0a1a14"),
+		Surface = Color3.fromHex("#ffffff"),
+		SurfaceLight = Color3.fromHex("#ffffff"),
+		Border = Color3.fromHex("#ffffff"),
+		Text = Color3.fromHex("#ecfdf5"),
+		TextSecondary = Color3.fromHex("#a7f3d0"),
+		TextMuted = Color3.fromHex("#4a7a60"),
+		Success = Color3.fromHex("#86efac"),
+		Warning = Color3.fromHex("#fde047"),
+		Danger = Color3.fromHex("#fb7185"),
+		GlassTint = Color3.fromHex("#d1fae5"),
+		GlassStroke = Color3.fromHex("#a7f3d0"),
+	},
+	Ocean = {
+		Accent = Color3.fromHex("#22d3ee"),
+		AccentLight = Color3.fromHex("#67e8f9"),
+		Background = Color3.fromHex("#0a1a2e"),
+		Surface = Color3.fromHex("#ffffff"),
+		SurfaceLight = Color3.fromHex("#ffffff"),
+		Border = Color3.fromHex("#ffffff"),
+		Text = Color3.fromHex("#ecfeff"),
+		TextSecondary = Color3.fromHex("#a5f3fc"),
+		TextMuted = Color3.fromHex("#4a7a8a"),
+		Success = Color3.fromHex("#86efac"),
+		Warning = Color3.fromHex("#fde047"),
+		Danger = Color3.fromHex("#fb7185"),
+		GlassTint = Color3.fromHex("#cffafe"),
+		GlassStroke = Color3.fromHex("#a5f3fc"),
 	},
 }
 
--- ══════════════════════════════════════════════════════════════
--- THEME CONSTRUCTOR
--- ══════════════════════════════════════════════════════════════
-
 function Theme.new(configFolder)
 	local self = setmetatable({}, Theme)
-	self._current = "Dark"
+	self._current = "Glass"
 	self._values = {}
 	self._listeners = {}
 	self._configFolder = configFolder or "GlassLib"
 
-	-- Copy defaults
-	for k, v in pairs(Theme.Presets.Dark) do
+	for k, v in pairs(Theme.Presets.Glass) do
 		self._values[k] = v
 	end
 
@@ -153,10 +156,6 @@ function Theme:_NotifyListeners()
 		cb(self._values, self._current)
 	end
 end
-
--- ══════════════════════════════════════════════════════════════
--- PERSISTENCE
--- ══════════════════════════════════════════════════════════════
 
 function Theme:Save(name)
 	local data = {

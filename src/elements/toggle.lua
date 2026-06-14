@@ -1,5 +1,6 @@
 --[[
     GlassLib - Toggle Element
+    Glass pill toggle with liquid knob
 ]]
 
 local Util = require(script.Parent.Parent.util)
@@ -12,8 +13,6 @@ function Toggle.new(config)
 	self._config = config or {}
 	self._state = false
 	self._frame = nil
-	self._track = nil
-	self._knob = nil
 	return self
 end
 
@@ -25,136 +24,131 @@ function Toggle:Create(parent, theme, order)
 	local callback = cfg.Callback or function() end
 	local hasDesc = desc ~= ""
 	self._state = default
+	local tv = theme:Get()
 
 	local row = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, hasDesc and 52 or 42),
-		BackgroundColor3 = theme.Surface,
-		BackgroundTransparency = 0.6,
+		Size = UDim2.new(1, 0, 0, hasDesc and 56 or 46),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
 		BorderSizePixel = 0,
 		LayoutOrder = order or 0,
 		Parent = parent,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = row})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = row})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.92,
+		Color = tv.GlassStroke,
+		Transparency = 0.45,
 		Thickness = 1,
 		Parent = row,
 	})
 	Util.Create("UIPadding", {
-		PaddingLeft = UDim.new(0, 12),
-		PaddingRight = UDim.new(0, 12),
+		PaddingLeft = UDim.new(0, 14),
+		PaddingRight = UDim.new(0, 14),
 		Parent = row,
 	})
 
 	Util.Create("TextLabel", {
-		Size = UDim2.new(1, -56, 0, 16),
-		Position = UDim2.new(0, 0, hasDesc and 0.2 or 0.5, 0),
+		Size = UDim2.new(1, -58, 0, 16),
+		Position = UDim2.new(0, 0, hasDesc and 0.22 or 0.5, 0),
 		AnchorPoint = Vector2.new(0, hasDesc and 0 or 0.5),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamMedium,
 		Text = title,
-		TextColor3 = theme.Text,
-		TextSize = 12.5,
+		TextColor3 = tv.Text,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = row,
 	})
 
 	if hasDesc then
 		Util.Create("TextLabel", {
-			Size = UDim2.new(1, -56, 0, 12),
+			Size = UDim2.new(1, -58, 0, 12),
 			Position = UDim2.new(0, 0, 0.65, 0),
 			BackgroundTransparency = 1,
 			Font = Enum.Font.Gotham,
 			Text = desc,
-			TextColor3 = theme.TextMuted,
-			TextSize = 10.5,
+			TextColor3 = tv.TextMuted,
+			TextSize = 11,
 			TextXAlignment = Enum.TextXAlignment.Left,
 			Parent = row,
 		})
 	end
 
-	-- Track
+	-- Track (glass style)
 	local track = Util.Create("Frame", {
-		Size = UDim2.new(0, 40, 0, 22),
+		Size = UDim2.new(0, 44, 0, 24),
 		Position = UDim2.new(1, 0, 0.5, 0),
 		AnchorPoint = Vector2.new(1, 0.5),
-		BackgroundColor3 = self._state and theme.Accent or Color3.fromRGB(60, 60, 70),
+		BackgroundColor3 = self._state and tv.Accent or tv.GlassTint,
+		BackgroundTransparency = self._state and 0.1 or 0.3,
 		BorderSizePixel = 0,
 		Parent = row,
 	})
 	Util.Create("UICorner", {CornerRadius = UDim.new(1, 0), Parent = track})
-
-	if self._state then
-		Util.MakeAccentGradient(track, theme)
-	end
+	Util.Create("UIStroke", {
+		Color = self._state and tv.Accent or tv.GlassStroke,
+		Transparency = self._state and 0.3 or 0.5,
+		Thickness = 1.5,
+		Parent = track,
+	})
 
 	-- Knob
 	local knob = Util.Create("Frame", {
 		Size = UDim2.new(0, 18, 0, 18),
-		Position = self._state and UDim2.new(1, -20, 0.5, 0) or UDim2.new(0, 2, 0.5, 0),
-		AnchorPoint = Vector2.new(0, 0.5),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		Position = self._state and UDim2.new(1, -22, 0.5, 0) or UDim2.new(0, 3, 0.5, 0),
+		AnchorPoint = self._state and Vector2.new(1, 0.5) or Vector2.new(0, 0.5),
+		BackgroundColor3 = self._state and Color3.fromRGB(255, 255, 255) or tv.TextMuted,
 		BorderSizePixel = 0,
 		Parent = track,
 	})
 	Util.Create("UICorner", {CornerRadius = UDim.new(1, 0), Parent = knob})
 
-	local function updateGradient()
-		for _, c in ipairs(track:GetChildren()) do
-			if c:IsA("UIGradient") then c:Destroy() end
-		end
-		if self._state then
-			Util.MakeAccentGradient(track, theme)
-		end
-	end
-
 	local function updateToggle(anim)
 		self._state = not self._state
 		if anim then
 			Util.SpringTween(knob, {
-				Position = self._state and UDim2.new(1, -20, 0.5, 0) or UDim2.new(0, 2, 0.5, 0),
+				Position = self._state and UDim2.new(1, -22, 0.5, 0) or UDim2.new(0, 3, 0.5, 0),
+				AnchorPoint = self._state and Vector2.new(1, 0.5) or Vector2.new(0, 0.5),
+				BackgroundColor3 = self._state and Color3.fromRGB(255, 255, 255) or tv.TextMuted,
 			}, 0.35)
 			Util.Tween(track, {
-				BackgroundColor3 = self._state and theme.Accent or Color3.fromRGB(60, 60, 70),
+				BackgroundColor3 = self._state and tv.Accent or tv.GlassTint,
+				BackgroundTransparency = self._state and 0.1 or 0.3,
 			}, 0.25)
+			local stroke = track:FindFirstChildOfClass("UIStroke")
+			if stroke then
+				Util.Tween(stroke, {
+					Color = self._state and tv.Accent or tv.GlassStroke,
+					Transparency = self._state and 0.3 or 0.5,
+				}, 0.25)
+			end
 		else
-			knob.Position = self._state and UDim2.new(1, -20, 0.5, 0) or UDim2.new(0, 2, 0.5, 0)
-			track.BackgroundColor3 = self._state and theme.Accent or Color3.fromRGB(60, 60, 70)
+			knob.Position = self._state and UDim2.new(1, -22, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
+			knob.AnchorPoint = self._state and Vector2.new(1, 0.5) or Vector2.new(0, 0.5)
+			knob.BackgroundColor3 = self._state and Color3.fromRGB(255, 255, 255) or tv.TextMuted
+			track.BackgroundColor3 = self._state and tv.Accent or tv.GlassTint
 		end
-		updateGradient()
 		callback(self._state)
 	end
 
 	track.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			updateToggle(true)
-		end
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then updateToggle(true) end
 	end)
-
 	knob.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			updateToggle(true)
-		end
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then updateToggle(true) end
 	end)
 
-	Util.AddHover(row, 0.6, 0.45)
+	Util.AddHover(row, 0.35, 0.2)
 
 	self._frame = row
-	self._track = track
-	self._knob = knob
 	self._updateToggle = updateToggle
 	return row
 end
 
-function Toggle:Get()
-	return self._state
-end
+function Toggle:Get() return self._state end
 
 function Toggle:Set(value)
-	if self._state ~= value then
-		self._updateToggle(true)
-	end
+	if self._state ~= value then self._updateToggle(true) end
 end
 
 return Toggle

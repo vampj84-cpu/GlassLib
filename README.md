@@ -56,12 +56,12 @@ Section:CreateDropdown({
 ## Themes
 
 ```lua
-GlassLib:SetTheme("Dark")     -- default
-GlassLib:SetTheme("Midnight") -- cyan
-GlassLib:SetTheme("Aurora")   -- purple
-GlassLib:SetTheme("Frost")    -- green
-GlassLib:SetTheme("Amber")    -- orange
-GlassLib:SetTheme("Rose")     -- red
+GlassLib:SetTheme("Glass")    -- default: purple glass
+GlassLib:SetTheme("Frost")    -- blue glass
+GlassLib:SetTheme("Aurora")   -- purple/pink glass
+GlassLib:SetTheme("Rose")     -- pink glass
+GlassLib:SetTheme("Emerald")  -- green glass
+GlassLib:SetTheme("Ocean")    -- cyan glass
 ```
 
 ## Floating Toggle Button

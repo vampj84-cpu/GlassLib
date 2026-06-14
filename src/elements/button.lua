@@ -1,5 +1,6 @@
 --[[
     GlassLib - Button Element
+    Glass card with liquid press effect
 ]]
 
 local Util = require(script.Parent.Parent.util)
@@ -11,7 +12,6 @@ function Button.new(config)
 	local self = setmetatable({}, Button)
 	self._config = config or {}
 	self._frame = nil
-	self._btn = nil
 	return self
 end
 
@@ -22,37 +22,38 @@ function Button:Create(parent, theme, order)
 	local callback = cfg.Callback or function() end
 	local color = cfg.Color
 	local hasDesc = desc ~= ""
+	local tv = theme:Get()
 
 	local row = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, hasDesc and 52 or 42),
-		BackgroundColor3 = theme.Surface,
-		BackgroundTransparency = 0.6,
+		Size = UDim2.new(1, 0, 0, hasDesc and 56 or 46),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
 		BorderSizePixel = 0,
 		LayoutOrder = order or 0,
 		Parent = parent,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = row})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = row})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.92,
+		Color = tv.GlassStroke,
+		Transparency = 0.45,
 		Thickness = 1,
 		Parent = row,
 	})
 	Util.Create("UIPadding", {
-		PaddingLeft = UDim.new(0, 12),
-		PaddingRight = UDim.new(0, 12),
+		PaddingLeft = UDim.new(0, 14),
+		PaddingRight = UDim.new(0, 14),
 		Parent = row,
 	})
 
 	Util.Create("TextLabel", {
 		Size = UDim2.new(1, -90, 0, 16),
-		Position = UDim2.new(0, 0, hasDesc and 0.2 or 0.5, 0),
+		Position = UDim2.new(0, 0, hasDesc and 0.22 or 0.5, 0),
 		AnchorPoint = Vector2.new(0, hasDesc and 0 or 0.5),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamMedium,
 		Text = title,
-		TextColor3 = theme.Text,
-		TextSize = 12.5,
+		TextColor3 = tv.Text,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = row,
 	})
@@ -64,19 +65,19 @@ function Button:Create(parent, theme, order)
 			BackgroundTransparency = 1,
 			Font = Enum.Font.Gotham,
 			Text = desc,
-			TextColor3 = theme.TextMuted,
-			TextSize = 10.5,
+			TextColor3 = tv.TextMuted,
+			TextSize = 11,
 			TextXAlignment = Enum.TextXAlignment.Left,
 			Parent = row,
 		})
 	end
 
 	local btn = Util.Create("TextButton", {
-		Size = UDim2.new(0, 70, 0, 30),
+		Size = UDim2.new(0, 72, 0, 32),
 		Position = UDim2.new(1, 0, 0.5, 0),
 		AnchorPoint = Vector2.new(1, 0.5),
-		BackgroundColor3 = color or theme.Accent,
-		BackgroundTransparency = color and 0.1 or 0,
+		BackgroundColor3 = color or tv.Accent,
+		BackgroundTransparency = color and 0.15 or 0,
 		BorderSizePixel = 0,
 		AutoButtonColor = false,
 		Font = Enum.Font.GothamMedium,
@@ -85,13 +86,12 @@ function Button:Create(parent, theme, order)
 		TextSize = 12,
 		Parent = row,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = btn})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = btn})
 
 	if not color then
-		Util.MakeAccentGradient(btn, theme)
+		Util.MakeAccentGradient(btn, theme:Get())
 	end
 
-	-- Interactions
 	row.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
 			Util.RippleEffect(row,
@@ -101,21 +101,20 @@ function Button:Create(parent, theme, order)
 		end
 	end)
 
-	Util.AddButtonHover(row, 0.6, 0.45,
-		UDim2.new(1, 0, 0, hasDesc and 54 or 44),
-		UDim2.new(1, 0, 0, hasDesc and 52 or 42)
+	Util.AddButtonHover(row, 0.35, 0.2,
+		UDim2.new(1, 0, 0, hasDesc and 58 or 48),
+		UDim2.new(1, 0, 0, hasDesc and 56 or 46)
 	)
 
 	btn.MouseButton1Click:Connect(function()
-		Util.SpringTween(btn, {Size = UDim2.new(0, 65, 0, 28)}, 0.15)
-		task.delay(0.15, function()
-			Util.SpringTween(btn, {Size = UDim2.new(0, 70, 0, 30)}, 0.2)
+		Util.SpringTween(btn, {Size = UDim2.new(0, 66, 0, 30)}, 0.12)
+		task.delay(0.12, function()
+			Util.SpringTween(btn, {Size = UDim2.new(0, 72, 0, 32)}, 0.18)
 		end)
 		callback()
 	end)
 
 	self._frame = row
-	self._btn = btn
 	return row
 end
 

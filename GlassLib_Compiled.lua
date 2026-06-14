@@ -237,110 +237,113 @@ do
 local Theme = {}
 Theme.__index = Theme
 
--- ══════════════════════════════════════════════════════════════
--- BUILT-IN THEMES
--- ══════════════════════════════════════════════════════════════
-
 Theme.Presets = {
-	Dark = {
-		Accent = Color3.fromHex("#6366f1"),
-		AccentLight = Color3.fromHex("#818cf8"),
-		Background = Color3.fromHex("#09090b"),
-		Surface = Color3.fromHex("#18181b"),
-		SurfaceLight = Color3.fromHex("#27272a"),
-		Border = Color3.fromHex("#3f3f46"),
-		Text = Color3.fromHex("#fafafa"),
-		TextSecondary = Color3.fromHex("#a1a1aa"),
-		TextMuted = Color3.fromHex("#52525b"),
-		Success = Color3.fromHex("#34d399"),
-		Warning = Color3.fromHex("#fbbf24"),
-		Danger = Color3.fromHex("#f87171"),
-	},
-	Midnight = {
-		Accent = Color3.fromHex("#06b6d4"),
-		AccentLight = Color3.fromHex("#22d3ee"),
-		Background = Color3.fromHex("#0c0c14"),
-		Surface = Color3.fromHex("#141420"),
-		SurfaceLight = Color3.fromHex("#1e1e2e"),
-		Border = Color3.fromHex("#2a2a3a"),
-		Text = Color3.fromHex("#f0f0f5"),
-		TextSecondary = Color3.fromHex("#8888aa"),
-		TextMuted = Color3.fromHex("#4a4a5a"),
-		Success = Color3.fromHex("#34d399"),
-		Warning = Color3.fromHex("#fbbf24"),
-		Danger = Color3.fromHex("#f87171"),
-	},
-	Aurora = {
-		Accent = Color3.fromHex("#a855f7"),
-		AccentLight = Color3.fromHex("#c084fc"),
-		Background = Color3.fromHex("#0a0a10"),
-		Surface = Color3.fromHex("#16161e"),
-		SurfaceLight = Color3.fromHex("#22222e"),
-		Border = Color3.fromHex("#333344"),
-		Text = Color3.fromHex("#f5f5ff"),
-		TextSecondary = Color3.fromHex("#9999bb"),
-		TextMuted = Color3.fromHex("#555566"),
-		Success = Color3.fromHex("#34d399"),
-		Warning = Color3.fromHex("#fbbf24"),
-		Danger = Color3.fromHex("#f87171"),
+	Glass = {
+		Accent = Color3.fromHex("#7c6bf0"),
+		AccentLight = Color3.fromHex("#a5a0f7"),
+		Background = Color3.fromHex("#1a1a2e"),
+		Surface = Color3.fromHex("#ffffff"),
+		SurfaceLight = Color3.fromHex("#ffffff"),
+		Border = Color3.fromHex("#ffffff"),
+		Text = Color3.fromHex("#ffffff"),
+		TextSecondary = Color3.fromHex("#c4c4d4"),
+		TextMuted = Color3.fromHex("#7a7a8e"),
+		Success = Color3.fromHex("#5de8a0"),
+		Warning = Color3.fromHex("#f5c542"),
+		Danger = Color3.fromHex("#f06b7c"),
+		GlassTint = Color3.fromHex("#ffffff"),
+		GlassStroke = Color3.fromHex("#e0e0ff"),
 	},
 	Frost = {
-		Accent = Color3.fromHex("#10b981"),
-		AccentLight = Color3.fromHex("#34d399"),
-		Background = Color3.fromHex("#080c10"),
-		Surface = Color3.fromHex("#121820"),
-		SurfaceLight = Color3.fromHex("#1c242e"),
-		Border = Color3.fromHex("#2a3440"),
-		Text = Color3.fromHex("#f0faf5"),
-		TextSecondary = Color3.fromHex("#88aa99"),
-		TextMuted = Color3.fromHex("#4a5a55"),
-		Success = Color3.fromHex("#34d399"),
-		Warning = Color3.fromHex("#fbbf24"),
-		Danger = Color3.fromHex("#f87171"),
+		Accent = Color3.fromHex("#38bdf8"),
+		AccentLight = Color3.fromHex("#7dd3fc"),
+		Background = Color3.fromHex("#0f172a"),
+		Surface = Color3.fromHex("#ffffff"),
+		SurfaceLight = Color3.fromHex("#ffffff"),
+		Border = Color3.fromHex("#ffffff"),
+		Text = Color3.fromHex("#f0f9ff"),
+		TextSecondary = Color3.fromHex("#bae6fd"),
+		TextMuted = Color3.fromHex("#4a6a80"),
+		Success = Color3.fromHex("#4ade80"),
+		Warning = Color3.fromHex("#facc15"),
+		Danger = Color3.fromHex("#fb7185"),
+		GlassTint = Color3.fromHex("#e0f2fe"),
+		GlassStroke = Color3.fromHex("#bae6fd"),
 	},
-	Amber = {
-		Accent = Color3.fromHex("#f59e0b"),
-		AccentLight = Color3.fromHex("#fbbf24"),
-		Background = Color3.fromHex("#0c0a08"),
-		Surface = Color3.fromHex("#1a1612"),
-		SurfaceLight = Color3.fromHex("#262018"),
-		Border = Color3.fromHex("#3a3228"),
-		Text = Color3.fromHex("#fefce8"),
-		TextSecondary = Color3.fromHex("#aaaa88"),
-		TextMuted = Color3.fromHex("#5a5544"),
-		Success = Color3.fromHex("#34d399"),
-		Warning = Color3.fromHex("#fbbf24"),
-		Danger = Color3.fromHex("#f87171"),
+	Aurora = {
+		Accent = Color3.fromHex("#c084fc"),
+		AccentLight = Color3.fromHex("#d8b4fe"),
+		Background = Color3.fromHex("#1a0a2e"),
+		Surface = Color3.fromHex("#ffffff"),
+		SurfaceLight = Color3.fromHex("#ffffff"),
+		Border = Color3.fromHex("#ffffff"),
+		Text = Color3.fromHex("#faf5ff"),
+		TextSecondary = Color3.fromHex("#d8b4fe"),
+		TextMuted = Color3.fromHex("#6a5080"),
+		Success = Color3.fromHex("#86efac"),
+		Warning = Color3.fromHex("#fde047"),
+		Danger = Color3.fromHex("#fda4af"),
+		GlassTint = Color3.fromHex("#f3e8ff"),
+		GlassStroke = Color3.fromHex("#d8b4fe"),
 	},
 	Rose = {
-		Accent = Color3.fromHex("#f43f5e"),
-		AccentLight = Color3.fromHex("#fb7185"),
-		Background = Color3.fromHex("#0c0809"),
-		Surface = Color3.fromHex("#1a1214"),
-		SurfaceLight = Color3.fromHex("#26181c"),
-		Border = Color3.fromHex("#3a2830"),
+		Accent = Color3.fromHex("#f472b6"),
+		AccentLight = Color3.fromHex("#f9a8d4"),
+		Background = Color3.fromHex("#1a0a14"),
+		Surface = Color3.fromHex("#ffffff"),
+		SurfaceLight = Color3.fromHex("#ffffff"),
+		Border = Color3.fromHex("#ffffff"),
 		Text = Color3.fromHex("#fff1f2"),
-		TextSecondary = Color3.fromHex("#aa8890"),
-		TextMuted = Color3.fromHex("#5a4448"),
-		Success = Color3.fromHex("#34d399"),
-		Warning = Color3.fromHex("#fbbf24"),
-		Danger = Color3.fromHex("#f87171"),
+		TextSecondary = Color3.fromHex("#fecdd3"),
+		TextMuted = Color3.fromHex("#8a5060"),
+		Success = Color3.fromHex("#86efac"),
+		Warning = Color3.fromHex("#fde047"),
+		Danger = Color3.fromHex("#fb7185"),
+		GlassTint = Color3.fromHex("#ffe4e6"),
+		GlassStroke = Color3.fromHex("#fecdd3"),
+	},
+	Emerald = {
+		Accent = Color3.fromHex("#34d399"),
+		AccentLight = Color3.fromHex("#6ee7b7"),
+		Background = Color3.fromHex("#0a1a14"),
+		Surface = Color3.fromHex("#ffffff"),
+		SurfaceLight = Color3.fromHex("#ffffff"),
+		Border = Color3.fromHex("#ffffff"),
+		Text = Color3.fromHex("#ecfdf5"),
+		TextSecondary = Color3.fromHex("#a7f3d0"),
+		TextMuted = Color3.fromHex("#4a7a60"),
+		Success = Color3.fromHex("#86efac"),
+		Warning = Color3.fromHex("#fde047"),
+		Danger = Color3.fromHex("#fb7185"),
+		GlassTint = Color3.fromHex("#d1fae5"),
+		GlassStroke = Color3.fromHex("#a7f3d0"),
+	},
+	Ocean = {
+		Accent = Color3.fromHex("#22d3ee"),
+		AccentLight = Color3.fromHex("#67e8f9"),
+		Background = Color3.fromHex("#0a1a2e"),
+		Surface = Color3.fromHex("#ffffff"),
+		SurfaceLight = Color3.fromHex("#ffffff"),
+		Border = Color3.fromHex("#ffffff"),
+		Text = Color3.fromHex("#ecfeff"),
+		TextSecondary = Color3.fromHex("#a5f3fc"),
+		TextMuted = Color3.fromHex("#4a7a8a"),
+		Success = Color3.fromHex("#86efac"),
+		Warning = Color3.fromHex("#fde047"),
+		Danger = Color3.fromHex("#fb7185"),
+		GlassTint = Color3.fromHex("#cffafe"),
+		GlassStroke = Color3.fromHex("#a5f3fc"),
 	},
 }
 
--- ══════════════════════════════════════════════════════════════
--- THEME CONSTRUCTOR
--- ══════════════════════════════════════════════════════════════
-
 function Theme.new(configFolder)
 	local self = setmetatable({}, Theme)
-	self._current = "Dark"
+	self._current = "Glass"
 	self._values = {}
 	self._listeners = {}
 	self._configFolder = configFolder or "GlassLib"
 
-	-- Copy defaults
-	for k, v in pairs(Theme.Presets.Dark) do
+	for k, v in pairs(Theme.Presets.Glass) do
 		self._values[k] = v
 	end
 
@@ -382,10 +385,6 @@ function Theme:_NotifyListeners()
 		cb(self._values, self._current)
 	end
 end
-
--- ══════════════════════════════════════════════════════════════
--- PERSISTENCE
--- ══════════════════════════════════════════════════════════════
 
 function Theme:Save(name)
 	local data = {
@@ -1218,7 +1217,6 @@ function El_Button.new(config)
 	local self = setmetatable({}, El_Button)
 	self._config = config or {}
 	self._frame = nil
-	self._btn = nil
 	return self
 end
 function El_Button:Create(parent, theme, order)
@@ -1228,35 +1226,36 @@ function El_Button:Create(parent, theme, order)
 	local callback = cfg.Callback or function() end
 	local color = cfg.Color
 	local hasDesc = desc ~= ""
+	local tv = theme:Get()
 	local row = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, hasDesc and 52 or 42),
-		BackgroundColor3 = theme.Surface,
-		BackgroundTransparency = 0.6,
+		Size = UDim2.new(1, 0, 0, hasDesc and 56 or 46),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
 		BorderSizePixel = 0,
 		LayoutOrder = order or 0,
 		Parent = parent,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = row})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = row})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.92,
+		Color = tv.GlassStroke,
+		Transparency = 0.45,
 		Thickness = 1,
 		Parent = row,
 	})
 	Util.Create("UIPadding", {
-		PaddingLeft = UDim.new(0, 12),
-		PaddingRight = UDim.new(0, 12),
+		PaddingLeft = UDim.new(0, 14),
+		PaddingRight = UDim.new(0, 14),
 		Parent = row,
 	})
 	Util.Create("TextLabel", {
 		Size = UDim2.new(1, -90, 0, 16),
-		Position = UDim2.new(0, 0, hasDesc and 0.2 or 0.5, 0),
+		Position = UDim2.new(0, 0, hasDesc and 0.22 or 0.5, 0),
 		AnchorPoint = Vector2.new(0, hasDesc and 0 or 0.5),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamMedium,
 		Text = title,
-		TextColor3 = theme.Text,
-		TextSize = 12.5,
+		TextColor3 = tv.Text,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = row,
 	})
@@ -1267,18 +1266,18 @@ function El_Button:Create(parent, theme, order)
 			BackgroundTransparency = 1,
 			Font = Enum.Font.Gotham,
 			Text = desc,
-			TextColor3 = theme.TextMuted,
-			TextSize = 10.5,
+			TextColor3 = tv.TextMuted,
+			TextSize = 11,
 			TextXAlignment = Enum.TextXAlignment.Left,
 			Parent = row,
 		})
 	end
 	local btn = Util.Create("TextButton", {
-		Size = UDim2.new(0, 70, 0, 30),
+		Size = UDim2.new(0, 72, 0, 32),
 		Position = UDim2.new(1, 0, 0.5, 0),
 		AnchorPoint = Vector2.new(1, 0.5),
-		BackgroundColor3 = color or theme.Accent,
-		BackgroundTransparency = color and 0.1 or 0,
+		BackgroundColor3 = color or tv.Accent,
+		BackgroundTransparency = color and 0.15 or 0,
 		BorderSizePixel = 0,
 		AutoButtonColor = false,
 		Font = Enum.Font.GothamMedium,
@@ -1287,11 +1286,10 @@ function El_Button:Create(parent, theme, order)
 		TextSize = 12,
 		Parent = row,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = btn})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = btn})
 	if not color then
-		Util.MakeAccentGradient(btn, theme)
+		Util.MakeAccentGradient(btn, theme:Get())
 	end
-	-- Interactions
 	row.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
 			Util.RippleEffect(row,
@@ -1300,19 +1298,18 @@ function El_Button:Create(parent, theme, order)
 			)
 		end
 	end)
-	Util.AddButtonHover(row, 0.6, 0.45,
-		UDim2.new(1, 0, 0, hasDesc and 54 or 44),
-		UDim2.new(1, 0, 0, hasDesc and 52 or 42)
+	Util.AddButtonHover(row, 0.35, 0.2,
+		UDim2.new(1, 0, 0, hasDesc and 58 or 48),
+		UDim2.new(1, 0, 0, hasDesc and 56 or 46)
 	)
 	btn.MouseButton1Click:Connect(function()
-		Util.SpringTween(btn, {Size = UDim2.new(0, 65, 0, 28)}, 0.15)
-		task.delay(0.15, function()
-			Util.SpringTween(btn, {Size = UDim2.new(0, 70, 0, 30)}, 0.2)
+		Util.SpringTween(btn, {Size = UDim2.new(0, 66, 0, 30)}, 0.12)
+		task.delay(0.12, function()
+			Util.SpringTween(btn, {Size = UDim2.new(0, 72, 0, 32)}, 0.18)
 		end)
 		callback()
 	end)
 	self._frame = row
-	self._btn = btn
 	return row
 end
 
@@ -1327,8 +1324,6 @@ function El_Toggle.new(config)
 	self._config = config or {}
 	self._state = false
 	self._frame = nil
-	self._track = nil
-	self._knob = nil
 	return self
 end
 function El_Toggle:Create(parent, theme, order)
@@ -1339,122 +1334,120 @@ function El_Toggle:Create(parent, theme, order)
 	local callback = cfg.Callback or function() end
 	local hasDesc = desc ~= ""
 	self._state = default
+	local tv = theme:Get()
 	local row = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, hasDesc and 52 or 42),
-		BackgroundColor3 = theme.Surface,
-		BackgroundTransparency = 0.6,
+		Size = UDim2.new(1, 0, 0, hasDesc and 56 or 46),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
 		BorderSizePixel = 0,
 		LayoutOrder = order or 0,
 		Parent = parent,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = row})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = row})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.92,
+		Color = tv.GlassStroke,
+		Transparency = 0.45,
 		Thickness = 1,
 		Parent = row,
 	})
 	Util.Create("UIPadding", {
-		PaddingLeft = UDim.new(0, 12),
-		PaddingRight = UDim.new(0, 12),
+		PaddingLeft = UDim.new(0, 14),
+		PaddingRight = UDim.new(0, 14),
 		Parent = row,
 	})
 	Util.Create("TextLabel", {
-		Size = UDim2.new(1, -56, 0, 16),
-		Position = UDim2.new(0, 0, hasDesc and 0.2 or 0.5, 0),
+		Size = UDim2.new(1, -58, 0, 16),
+		Position = UDim2.new(0, 0, hasDesc and 0.22 or 0.5, 0),
 		AnchorPoint = Vector2.new(0, hasDesc and 0 or 0.5),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamMedium,
 		Text = title,
-		TextColor3 = theme.Text,
-		TextSize = 12.5,
+		TextColor3 = tv.Text,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = row,
 	})
 	if hasDesc then
 		Util.Create("TextLabel", {
-			Size = UDim2.new(1, -56, 0, 12),
+			Size = UDim2.new(1, -58, 0, 12),
 			Position = UDim2.new(0, 0, 0.65, 0),
 			BackgroundTransparency = 1,
 			Font = Enum.Font.Gotham,
 			Text = desc,
-			TextColor3 = theme.TextMuted,
-			TextSize = 10.5,
+			TextColor3 = tv.TextMuted,
+			TextSize = 11,
 			TextXAlignment = Enum.TextXAlignment.Left,
 			Parent = row,
 		})
 	end
-	-- Track
+	-- Track (glass style)
 	local track = Util.Create("Frame", {
-		Size = UDim2.new(0, 40, 0, 22),
+		Size = UDim2.new(0, 44, 0, 24),
 		Position = UDim2.new(1, 0, 0.5, 0),
 		AnchorPoint = Vector2.new(1, 0.5),
-		BackgroundColor3 = self._state and theme.Accent or Color3.fromRGB(60, 60, 70),
+		BackgroundColor3 = self._state and tv.Accent or tv.GlassTint,
+		BackgroundTransparency = self._state and 0.1 or 0.3,
 		BorderSizePixel = 0,
 		Parent = row,
 	})
 	Util.Create("UICorner", {CornerRadius = UDim.new(1, 0), Parent = track})
-	if self._state then
-		Util.MakeAccentGradient(track, theme)
-	end
+	Util.Create("UIStroke", {
+		Color = self._state and tv.Accent or tv.GlassStroke,
+		Transparency = self._state and 0.3 or 0.5,
+		Thickness = 1.5,
+		Parent = track,
+	})
 	-- Knob
 	local knob = Util.Create("Frame", {
 		Size = UDim2.new(0, 18, 0, 18),
-		Position = self._state and UDim2.new(1, -20, 0.5, 0) or UDim2.new(0, 2, 0.5, 0),
-		AnchorPoint = Vector2.new(0, 0.5),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		Position = self._state and UDim2.new(1, -22, 0.5, 0) or UDim2.new(0, 3, 0.5, 0),
+		AnchorPoint = self._state and Vector2.new(1, 0.5) or Vector2.new(0, 0.5),
+		BackgroundColor3 = self._state and Color3.fromRGB(255, 255, 255) or tv.TextMuted,
 		BorderSizePixel = 0,
 		Parent = track,
 	})
 	Util.Create("UICorner", {CornerRadius = UDim.new(1, 0), Parent = knob})
-	local function updateGradient()
-		for _, c in ipairs(track:GetChildren()) do
-			if c:IsA("UIGradient") then c:Destroy() end
-		end
-		if self._state then
-			Util.MakeAccentGradient(track, theme)
-		end
-	end
 	local function updateToggle(anim)
 		self._state = not self._state
 		if anim then
 			Util.SpringTween(knob, {
-				Position = self._state and UDim2.new(1, -20, 0.5, 0) or UDim2.new(0, 2, 0.5, 0),
+				Position = self._state and UDim2.new(1, -22, 0.5, 0) or UDim2.new(0, 3, 0.5, 0),
+				AnchorPoint = self._state and Vector2.new(1, 0.5) or Vector2.new(0, 0.5),
+				BackgroundColor3 = self._state and Color3.fromRGB(255, 255, 255) or tv.TextMuted,
 			}, 0.35)
 			Util.Tween(track, {
-				BackgroundColor3 = self._state and theme.Accent or Color3.fromRGB(60, 60, 70),
+				BackgroundColor3 = self._state and tv.Accent or tv.GlassTint,
+				BackgroundTransparency = self._state and 0.1 or 0.3,
 			}, 0.25)
+			local stroke = track:FindFirstChildOfClass("UIStroke")
+			if stroke then
+				Util.Tween(stroke, {
+					Color = self._state and tv.Accent or tv.GlassStroke,
+					Transparency = self._state and 0.3 or 0.5,
+				}, 0.25)
+			end
 		else
-			knob.Position = self._state and UDim2.new(1, -20, 0.5, 0) or UDim2.new(0, 2, 0.5, 0)
-			track.BackgroundColor3 = self._state and theme.Accent or Color3.fromRGB(60, 60, 70)
+			knob.Position = self._state and UDim2.new(1, -22, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
+			knob.AnchorPoint = self._state and Vector2.new(1, 0.5) or Vector2.new(0, 0.5)
+			knob.BackgroundColor3 = self._state and Color3.fromRGB(255, 255, 255) or tv.TextMuted
+			track.BackgroundColor3 = self._state and tv.Accent or tv.GlassTint
 		end
-		updateGradient()
 		callback(self._state)
 	end
 	track.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			updateToggle(true)
-		end
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then updateToggle(true) end
 	end)
 	knob.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			updateToggle(true)
-		end
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then updateToggle(true) end
 	end)
-	Util.AddHover(row, 0.6, 0.45)
+	Util.AddHover(row, 0.35, 0.2)
 	self._frame = row
-	self._track = track
-	self._knob = knob
 	self._updateToggle = updateToggle
 	return row
 end
-function El_Toggle:Get()
-	return self._state
-end
+function El_Toggle:Get() return self._state end
 function El_Toggle:Set(value)
-	if self._state ~= value then
-		self._updateToggle(true)
-	end
+	if self._state ~= value then self._updateToggle(true) end
 end
 
 end
@@ -1479,70 +1472,70 @@ function El_Slider:Create(parent, theme, order)
 	local callback = cfg.Callback or function() end
 	self._value = default
 	local pct = (default - min) / (max - min)
+	local tv = theme:Get()
 	local row = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, 56),
-		BackgroundColor3 = theme.Surface,
-		BackgroundTransparency = 0.6,
+		Size = UDim2.new(1, 0, 0, 60),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
 		BorderSizePixel = 0,
 		LayoutOrder = order or 0,
 		Parent = parent,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = row})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = row})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.92,
+		Color = tv.GlassStroke,
+		Transparency = 0.45,
 		Thickness = 1,
 		Parent = row,
 	})
 	Util.Create("UIPadding", {
-		PaddingLeft = UDim.new(0, 12),
-		PaddingRight = UDim.new(0, 12),
-		PaddingTop = UDim.new(0, 10),
+		PaddingLeft = UDim.new(0, 14),
+		PaddingRight = UDim.new(0, 14),
+		PaddingTop = UDim.new(0, 12),
 		Parent = row,
 	})
-	-- Header
 	Util.Create("TextLabel", {
 		Size = UDim2.new(1, -50, 0, 16),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamMedium,
 		Text = title,
-		TextColor3 = theme.Text,
-		TextSize = 12.5,
+		TextColor3 = tv.Text,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = row,
 	})
 	local valueLabel = Util.Create("TextLabel", {
-		Size = UDim2.new(0, 40, 0, 16),
+		Size = UDim2.new(0, 44, 0, 16),
 		Position = UDim2.new(1, 0, 0, 0),
 		AnchorPoint = Vector2.new(1, 0),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamBold,
 		Text = tostring(math.round(default)),
-		TextColor3 = theme.AccentLight,
-		TextSize = 12,
+		TextColor3 = tv.AccentLight,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Right,
 		Parent = row,
 	})
 	-- Track
 	local trackBg = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, 5),
-		Position = UDim2.new(0, 0, 1, -12),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 0.92,
+		Size = UDim2.new(1, 0, 0, 6),
+		Position = UDim2.new(0, 0, 1, -14),
+		BackgroundColor3 = tv.GlassStroke,
+		BackgroundTransparency = 0.5,
 		BorderSizePixel = 0,
 		Parent = row,
 	})
 	Util.Create("UICorner", {CornerRadius = UDim.new(1, 0), Parent = trackBg})
 	local trackFill = Util.Create("Frame", {
 		Size = UDim2.new(pct, 0, 1, 0),
-		BackgroundColor3 = theme.Accent,
+		BackgroundColor3 = tv.Accent,
 		BorderSizePixel = 0,
 		Parent = trackBg,
 	})
 	Util.Create("UICorner", {CornerRadius = UDim.new(1, 0), Parent = trackFill})
-	Util.MakeAccentGradient(trackFill, theme)
+	Util.MakeAccentGradient(trackFill, theme:Get())
 	local knob = Util.Create("Frame", {
-		Size = UDim2.new(0, 16, 0, 16),
+		Size = UDim2.new(0, 18, 0, 18),
 		Position = UDim2.new(pct, 0, 0.5, 0),
 		AnchorPoint = Vector2.new(0.5, 0.5),
 		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
@@ -1550,6 +1543,12 @@ function El_Slider:Create(parent, theme, order)
 		Parent = trackBg,
 	})
 	Util.Create("UICorner", {CornerRadius = UDim.new(1, 0), Parent = knob})
+	Util.Create("UIStroke", {
+		Color = tv.Accent,
+		Transparency = 0.3,
+		Thickness = 2,
+		Parent = knob,
+	})
 	local dragging = false
 	local function updateSlider(inputX)
 		local relX = (inputX - trackBg.AbsolutePosition.X) / trackBg.AbsoluteSize.X
@@ -1562,35 +1561,25 @@ function El_Slider:Create(parent, theme, order)
 		callback(math.round(self._value))
 	end
 	trackBg.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			dragging = true
-			updateSlider(input.Position.X)
-		end
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then dragging = true; updateSlider(input.Position.X) end
 	end)
 	knob.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			dragging = true
-		end
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then dragging = true end
 	end)
 	Util.UIS.InputEnded:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			dragging = false
-		end
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then dragging = false end
 	end)
 	Util.UIS.InputChanged:Connect(function(input)
-		if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-			updateSlider(input.Position.X)
-		end
+		if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then updateSlider(input.Position.X) end
 	end)
 	knob.MouseEnter:Connect(function()
-		Util.SpringTween(knob, {Size = UDim2.new(0, 20, 0, 20)}, 0.2)
+		Util.SpringTween(knob, {Size = UDim2.new(0, 22, 0, 22)}, 0.2)
 	end)
 	knob.MouseLeave:Connect(function()
-		Util.SpringTween(knob, {Size = UDim2.new(0, 16, 0, 16)}, 0.2)
+		Util.SpringTween(knob, {Size = UDim2.new(0, 18, 0, 18)}, 0.2)
 	end)
-	Util.AddHover(row, 0.6, 0.45)
+	Util.AddHover(row, 0.35, 0.2)
 	self._frame = row
-	self._trackBg = trackBg
 	self._trackFill = trackFill
 	self._knob = knob
 	self._valueLabel = valueLabel
@@ -1598,9 +1587,7 @@ function El_Slider:Create(parent, theme, order)
 	self._max = max
 	return row
 end
-function El_Slider:Get()
-	return self._value
-end
+function El_Slider:Get() return self._value end
 function El_Slider:Set(val)
 	self._value = math.clamp(val, self._min, self._max)
 	local pct = (self._value - self._min) / (self._max - self._min)
@@ -1630,25 +1617,26 @@ function El_Dropdown:Create(parent, theme, order)
 	local callback = cfg.Callback or function() end
 	self._selected = default
 	local isOpen = false
+	local tv = theme:Get()
 	local row = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, 70),
-		BackgroundColor3 = theme.Surface,
-		BackgroundTransparency = 0.6,
+		Size = UDim2.new(1, 0, 0, 74),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
 		BorderSizePixel = 0,
 		LayoutOrder = order or 0,
 		Parent = parent,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = row})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = row})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.92,
+		Color = tv.GlassStroke,
+		Transparency = 0.45,
 		Thickness = 1,
 		Parent = row,
 	})
 	Util.Create("UIPadding", {
-		PaddingLeft = UDim.new(0, 12),
-		PaddingRight = UDim.new(0, 12),
-		PaddingTop = UDim.new(0, 8),
+		PaddingLeft = UDim.new(0, 14),
+		PaddingRight = UDim.new(0, 14),
+		PaddingTop = UDim.new(0, 10),
 		Parent = row,
 	})
 	Util.Create("TextLabel", {
@@ -1656,69 +1644,69 @@ function El_Dropdown:Create(parent, theme, order)
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamMedium,
 		Text = title,
-		TextColor3 = theme.Text,
-		TextSize = 12.5,
+		TextColor3 = tv.Text,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = row,
 	})
 	-- Trigger
 	local trigger = Util.Create("TextButton", {
-		Size = UDim2.new(1, 0, 0, 32),
-		Position = UDim2.new(0, 0, 1, -8),
+		Size = UDim2.new(1, 0, 0, 34),
+		Position = UDim2.new(0, 0, 1, -10),
 		AnchorPoint = Vector2.new(0, 1),
-		BackgroundColor3 = theme.SurfaceLight,
-		BackgroundTransparency = 0.3,
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.2,
 		BorderSizePixel = 0,
 		AutoButtonColor = false,
 		Font = Enum.Font.Gotham,
 		Text = "",
 		Parent = row,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = trigger})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = trigger})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.9,
+		Color = tv.GlassStroke,
+		Transparency = 0.35,
 		Thickness = 1,
 		Parent = trigger,
 	})
 	local selectedLabel = Util.Create("TextLabel", {
-		Size = UDim2.new(1, -30, 1, 0),
-		Position = UDim2.new(0, 10, 0, 0),
+		Size = UDim2.new(1, -32, 1, 0),
+		Position = UDim2.new(0, 12, 0, 0),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.Gotham,
 		Text = default or "",
-		TextColor3 = theme.TextSecondary,
+		TextColor3 = tv.TextSecondary,
 		TextSize = 12,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = trigger,
 	})
 	local arrow = Util.Create("TextLabel", {
 		Size = UDim2.new(0, 20, 1, 0),
-		Position = UDim2.new(1, -5, 0, 0),
+		Position = UDim2.new(1, -6, 0, 0),
 		AnchorPoint = Vector2.new(1, 0),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.Gotham,
 		Text = "▾",
-		TextColor3 = theme.TextMuted,
-		TextSize = 12,
+		TextColor3 = tv.TextMuted,
+		TextSize = 13,
 		Parent = trigger,
 	})
 	-- Menu
-	local menuHeight = math.min(#options * 30 + 8, 150)
+	local menuHeight = math.min(#options * 32 + 8, 160)
 	local menu = Util.Create("Frame", {
 		Size = UDim2.new(1, 0, 0, menuHeight),
 		Position = UDim2.new(0, 0, 1, 4),
-		BackgroundColor3 = theme.Surface,
-		BackgroundTransparency = 0.05,
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.15,
 		BorderSizePixel = 0,
 		Visible = false,
 		ZIndex = 50,
 		Parent = row,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = menu})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 12), Parent = menu})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.88,
+		Color = tv.GlassStroke,
+		Transparency = 0.3,
 		Thickness = 1,
 		ZIndex = 50,
 		Parent = menu,
@@ -1737,27 +1725,27 @@ function El_Dropdown:Create(parent, theme, order)
 	})
 	for _, option in ipairs(options) do
 		local optBtn = Util.Create("TextButton", {
-			Size = UDim2.new(1, 0, 0, 28),
-			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-			BackgroundTransparency = option == default and 0.9 or 1,
+			Size = UDim2.new(1, 0, 0, 30),
+			BackgroundColor3 = tv.GlassTint,
+			BackgroundTransparency = option == default and 0.15 or 0.6,
 			BorderSizePixel = 0,
 			AutoButtonColor = false,
 			Font = Enum.Font.Gotham,
 			Text = option,
-			TextColor3 = option == default and theme.AccentLight or theme.TextSecondary,
+			TextColor3 = option == default and tv.AccentLight or tv.TextSecondary,
 			TextSize = 12,
 			ZIndex = 51,
 			Parent = menu,
 		})
-		Util.Create("UICorner", {CornerRadius = UDim.new(0, 7), Parent = optBtn})
+		Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = optBtn})
 		optBtn.MouseEnter:Connect(function()
 			if option ~= self._selected then
-				Util.Tween(optBtn, {BackgroundTransparency = 0.92}, 0.1)
+				Util.Tween(optBtn, {BackgroundTransparency = 0.25}, 0.1)
 			end
 		end)
 		optBtn.MouseLeave:Connect(function()
 			if option ~= self._selected then
-				Util.Tween(optBtn, {BackgroundTransparency = 1}, 0.1)
+				Util.Tween(optBtn, {BackgroundTransparency = 0.6}, 0.1)
 			end
 		end)
 		optBtn.MouseButton1Click:Connect(function()
@@ -1768,10 +1756,8 @@ function El_Dropdown:Create(parent, theme, order)
 			Util.Tween(arrow, {Rotation = 0}, 0.2)
 			for _, child in ipairs(menu:GetChildren()) do
 				if child:IsA("TextButton") then
-					Util.Tween(child, {
-						BackgroundTransparency = child.Text == self._selected and 0.9 or 1,
-					}, 0.1)
-					child.TextColor3 = child.Text == self._selected and theme.AccentLight or theme.TextSecondary
+					child.BackgroundTransparency = child.Text == self._selected and 0.15 or 0.6
+					child.TextColor3 = child.Text == self._selected and tv.AccentLight or tv.TextSecondary
 				end
 			end
 			callback(self._selected)
@@ -1782,45 +1768,23 @@ function El_Dropdown:Create(parent, theme, order)
 		menu.Visible = isOpen
 		Util.Tween(arrow, {Rotation = isOpen and 180 or 0}, 0.25)
 		if isOpen then
-			Util.SpringTween(row, {Size = UDim2.new(1, 0, 0, 70 + menuHeight + 8)}, 0.3)
+			Util.SpringTween(row, {Size = UDim2.new(1, 0, 0, 74 + menuHeight + 8)}, 0.3)
 		else
-			Util.SpringTween(row, {Size = UDim2.new(1, 0, 0, 70)}, 0.25)
+			Util.SpringTween(row, {Size = UDim2.new(1, 0, 0, 74)}, 0.25)
 		end
 	end)
+	Util.AddHover(row, 0.35, 0.2)
 	self._frame = row
 	self._menu = menu
 	self._selectedLabel = selectedLabel
-	self._options = options
 	self._callback = callback
 	return row
 end
-function El_Dropdown:Get()
-	return self._selected
-end
+function El_Dropdown:Get() return self._selected end
 function El_Dropdown:Set(option)
 	self._selected = option
-	if self._selectedLabel then
-		self._selectedLabel.Text = option
-	end
-	if self._menu then
-		for _, child in ipairs(self._menu:GetChildren()) do
-			if child:IsA("TextButton") then
-				child.TextColor3 = child.Text == self._selected and (self._config._theme and self._config._theme.AccentLight or Color3.fromHex("#818cf8")) or Color3.fromHex("#a1a1aa")
-			end
-		end
-	end
-	if self._callback then
-		self._callback(self._selected)
-	end
-end
-function El_Dropdown:Refresh(options)
-	self._options = options
-	if self._menu then
-		for _, child in ipairs(self._menu:GetChildren()) do
-			if child:IsA("TextButton") then child:Destroy() end
-		end
-		-- Rebuild would require theme ref, leave for manual rebuild
-	end
+	if self._selectedLabel then self._selectedLabel.Text = option end
+	if self._callback then self._callback(self._selected) end
 end
 
 end
@@ -1842,25 +1806,26 @@ function El_TextInput:Create(parent, theme, order)
 	local placeholder = cfg.Placeholder or ""
 	local default = cfg.Default or ""
 	local callback = cfg.Callback or function() end
+	local tv = theme:Get()
 	local row = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, 66),
-		BackgroundColor3 = theme.Surface,
-		BackgroundTransparency = 0.6,
+		Size = UDim2.new(1, 0, 0, 70),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
 		BorderSizePixel = 0,
 		LayoutOrder = order or 0,
 		Parent = parent,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = row})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = row})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.92,
+		Color = tv.GlassStroke,
+		Transparency = 0.45,
 		Thickness = 1,
 		Parent = row,
 	})
 	Util.Create("UIPadding", {
-		PaddingLeft = UDim.new(0, 12),
-		PaddingRight = UDim.new(0, 12),
-		PaddingTop = UDim.new(0, 8),
+		PaddingLeft = UDim.new(0, 14),
+		PaddingRight = UDim.new(0, 14),
+		PaddingTop = UDim.new(0, 10),
 		Parent = row,
 	})
 	Util.Create("TextLabel", {
@@ -1868,62 +1833,54 @@ function El_TextInput:Create(parent, theme, order)
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamMedium,
 		Text = title,
-		TextColor3 = theme.Text,
-		TextSize = 12.5,
+		TextColor3 = tv.Text,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = row,
 	})
 	local input = Util.Create("TextBox", {
-		Size = UDim2.new(1, 0, 0, 32),
-		Position = UDim2.new(0, 0, 1, -8),
+		Size = UDim2.new(1, 0, 0, 34),
+		Position = UDim2.new(0, 0, 1, -10),
 		AnchorPoint = Vector2.new(0, 1),
-		BackgroundColor3 = theme.SurfaceLight,
-		BackgroundTransparency = 0.3,
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.2,
 		BorderSizePixel = 0,
 		Font = Enum.Font.Gotham,
 		PlaceholderText = placeholder,
-		PlaceholderColor3 = theme.TextMuted,
+		PlaceholderColor3 = tv.TextMuted,
 		Text = default,
-		TextColor3 = theme.Text,
+		TextColor3 = tv.Text,
 		TextSize = 12,
 		ClearTextOnFocus = false,
 		Parent = row,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = input})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = input})
 	local inputStroke = Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.9,
+		Color = tv.GlassStroke,
+		Transparency = 0.35,
 		Thickness = 1,
 		Parent = input,
 	})
 	Util.Create("UIPadding", {
-		PaddingLeft = UDim.new(0, 10),
-		PaddingRight = UDim.new(0, 10),
+		PaddingLeft = UDim.new(0, 12),
+		PaddingRight = UDim.new(0, 12),
 		Parent = input,
 	})
 	input.Focused:Connect(function()
-		Util.Tween(input, {BackgroundTransparency = 0.15}, 0.2)
-		inputStroke.Color = theme.Accent
-		inputStroke.Transparency = 0.5
+		Util.Tween(input, {BackgroundTransparency = 0.05}, 0.2)
+		Util.Tween(inputStroke, {Color = tv.Accent, Transparency = 0.2}, 0.2)
 	end)
 	input.FocusLost:Connect(function()
-		Util.Tween(input, {BackgroundTransparency = 0.3}, 0.2)
-		inputStroke.Color = Color3.fromRGB(255, 255, 255)
-		inputStroke.Transparency = 0.9
+		Util.Tween(input, {BackgroundTransparency = 0.2}, 0.2)
+		Util.Tween(inputStroke, {Color = tv.GlassStroke, Transparency = 0.35}, 0.2)
 		callback(input.Text)
 	end)
 	self._frame = row
 	self._input = input
 	return input
 end
-function El_TextInput:Get()
-	return self._input and self._input.Text or ""
-end
-function El_TextInput:Set(value)
-	if self._input then
-		self._input.Text = value
-	end
-end
+function El_TextInput:Get() return self._input and self._input.Text or "" end
+function El_TextInput:Set(value) if self._input then self._input.Text = value end end
 
 end
 
@@ -1945,61 +1902,62 @@ function El_Keybind:Create(parent, theme, order)
 	local callback = cfg.Callback or function() end
 	self._bound = default
 	local listening = false
+	local tv = theme:Get()
 	local row = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, 42),
-		BackgroundColor3 = theme.Surface,
-		BackgroundTransparency = 0.6,
+		Size = UDim2.new(1, 0, 0, 46),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
 		BorderSizePixel = 0,
 		LayoutOrder = order or 0,
 		Parent = parent,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = row})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = row})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.92,
+		Color = tv.GlassStroke,
+		Transparency = 0.45,
 		Thickness = 1,
 		Parent = row,
 	})
 	Util.Create("UIPadding", {
-		PaddingLeft = UDim.new(0, 12),
-		PaddingRight = UDim.new(0, 12),
+		PaddingLeft = UDim.new(0, 14),
+		PaddingRight = UDim.new(0, 14),
 		Parent = row,
 	})
 	Util.Create("TextLabel", {
-		Size = UDim2.new(1, -80, 1, 0),
+		Size = UDim2.new(1, -84, 1, 0),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamMedium,
 		Text = title,
-		TextColor3 = theme.Text,
-		TextSize = 12.5,
+		TextColor3 = tv.Text,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = row,
 	})
 	local bindBtn = Util.Create("TextButton", {
-		Size = UDim2.new(0, 70, 0, 28),
+		Size = UDim2.new(0, 72, 0, 30),
 		Position = UDim2.new(1, 0, 0.5, 0),
 		AnchorPoint = Vector2.new(1, 0.5),
-		BackgroundColor3 = default ~= Enum.KeyCode.Unknown and theme.Accent or theme.SurfaceLight,
-		BackgroundTransparency = default ~= Enum.KeyCode.Unknown and 0.85 or 0.3,
+		BackgroundColor3 = default ~= Enum.KeyCode.Unknown and tv.Accent or tv.GlassTint,
+		BackgroundTransparency = default ~= Enum.KeyCode.Unknown and 0.3 or 0.2,
 		BorderSizePixel = 0,
 		AutoButtonColor = false,
 		Font = Enum.Font.GothamMedium,
 		Text = default ~= Enum.KeyCode.Unknown and default.Name or "Bind",
-		TextColor3 = default ~= Enum.KeyCode.Unknown and theme.AccentLight or theme.TextMuted,
+		TextColor3 = default ~= Enum.KeyCode.Unknown and tv.AccentLight or tv.TextMuted,
 		TextSize = 11,
 		Parent = row,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 6), Parent = bindBtn})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = bindBtn})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.88,
+		Color = default ~= Enum.KeyCode.Unknown and tv.Accent or tv.GlassStroke,
+		Transparency = 0.35,
 		Thickness = 1,
 		Parent = bindBtn,
 	})
 	bindBtn.MouseButton1Click:Connect(function()
 		listening = true
 		bindBtn.Text = "..."
-		Util.Tween(bindBtn, {BackgroundColor3 = theme.Accent, BackgroundTransparency = 0.7}, 0.15)
+		Util.Tween(bindBtn, {BackgroundColor3 = tv.Accent, BackgroundTransparency = 0.2}, 0.15)
 	end)
 	Util.UIS.InputBegan:Connect(function(input, gameProcessed)
 		if gameProcessed then return end
@@ -2007,20 +1965,16 @@ function El_Keybind:Create(parent, theme, order)
 			self._bound = input.KeyCode
 			listening = false
 			bindBtn.Text = self._bound.Name
-			Util.Tween(bindBtn, {BackgroundTransparency = 0.85}, 0.15)
+			Util.Tween(bindBtn, {BackgroundTransparency = 0.3}, 0.15)
 			callback(self._bound)
 		end
 	end)
-	Util.AddHover(row, 0.6, 0.45)
+	Util.AddHover(row, 0.35, 0.2)
 	self._frame = row
 	return row
 end
-function El_Keybind:Get()
-	return self._bound
-end
-function El_Keybind:Set(keycode)
-	self._bound = keycode
-end
+function El_Keybind:Get() return self._bound end
+function El_Keybind:Set(keycode) self._bound = keycode end
 
 end
 
@@ -2038,41 +1992,42 @@ end
 function El_ColorPicker:Create(parent, theme, order)
 	local cfg = self._config
 	local title = cfg.Title or "Color"
-	local default = cfg.Default or Color3.fromRGB(99, 102, 241)
+	local default = cfg.Default or Color3.fromHex("#7c6bf0")
 	local callback = cfg.Callback or function() end
 	self._color = default
+	local tv = theme:Get()
 	local row = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, 42),
-		BackgroundColor3 = theme.Surface,
-		BackgroundTransparency = 0.6,
+		Size = UDim2.new(1, 0, 0, 46),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
 		BorderSizePixel = 0,
 		LayoutOrder = order or 0,
 		Parent = parent,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = row})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = row})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.92,
+		Color = tv.GlassStroke,
+		Transparency = 0.45,
 		Thickness = 1,
 		Parent = row,
 	})
 	Util.Create("UIPadding", {
-		PaddingLeft = UDim.new(0, 12),
-		PaddingRight = UDim.new(0, 12),
+		PaddingLeft = UDim.new(0, 14),
+		PaddingRight = UDim.new(0, 14),
 		Parent = row,
 	})
 	Util.Create("TextLabel", {
-		Size = UDim2.new(1, -50, 1, 0),
+		Size = UDim2.new(1, -54, 1, 0),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamMedium,
 		Text = title,
-		TextColor3 = theme.Text,
-		TextSize = 12.5,
+		TextColor3 = tv.Text,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = row,
 	})
 	local swatch = Util.Create("TextButton", {
-		Size = UDim2.new(0, 28, 0, 28),
+		Size = UDim2.new(0, 30, 0, 30),
 		Position = UDim2.new(1, 0, 0.5, 0),
 		AnchorPoint = Vector2.new(1, 0.5),
 		BackgroundColor3 = default,
@@ -2081,44 +2036,43 @@ function El_ColorPicker:Create(parent, theme, order)
 		Text = "",
 		Parent = row,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = swatch})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = swatch})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.7,
+		Color = tv.GlassStroke,
+		Transparency = 0.3,
 		Thickness = 2,
 		Parent = swatch,
 	})
 	-- Color picker popup
 	local pickerOpen = false
 	local pickerFrame = Util.Create("Frame", {
-		Size = UDim2.new(0, 200, 0, 160),
-		Position = UDim2.new(1, -10, 0.5, 0),
+		Size = UDim2.new(0, 210, 0, 170),
+		Position = UDim2.new(1, -12, 0.5, 0),
 		AnchorPoint = Vector2.new(1, 0.5),
-		BackgroundColor3 = theme.Surface,
-		BackgroundTransparency = 0.05,
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.1,
 		BorderSizePixel = 0,
 		Visible = false,
 		ZIndex = 60,
 		Parent = row,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 12), Parent = pickerFrame})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = pickerFrame})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.88,
+		Color = tv.GlassStroke,
+		Transparency = 0.25,
 		Thickness = 1,
 		ZIndex = 60,
 		Parent = pickerFrame,
 	})
-	-- Color gradient square
 	local colorSquare = Util.Create("Frame", {
-		Size = UDim2.new(1, -20, 0, 100),
-		Position = UDim2.new(0, 10, 0, 10),
+		Size = UDim2.new(1, -22, 0, 105),
+		Position = UDim2.new(0, 11, 0, 11),
 		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 		BorderSizePixel = 0,
 		ZIndex = 61,
 		Parent = pickerFrame,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = colorSquare})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = colorSquare})
 	Util.Create("UIGradient", {
 		Color = ColorSequence.new(Color3.fromRGB(255, 255, 255)),
 		Transparency = NumberSequence.new({
@@ -2127,10 +2081,9 @@ function El_ColorPicker:Create(parent, theme, order)
 		}),
 		Parent = colorSquare,
 	})
-	-- Hue slider
 	local hueBar = Util.Create("Frame", {
-		Size = UDim2.new(1, -20, 0, 12),
-		Position = UDim2.new(0, 10, 1, -30),
+		Size = UDim2.new(1, -22, 0, 14),
+		Position = UDim2.new(0, 11, 1, -32),
 		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 		BorderSizePixel = 0,
 		ZIndex = 61,
@@ -2153,23 +2106,17 @@ function El_ColorPicker:Create(parent, theme, order)
 		pickerOpen = not pickerOpen
 		pickerFrame.Visible = pickerOpen
 	end)
-	Util.AddHover(row, 0.6, 0.45)
+	Util.AddHover(row, 0.35, 0.2)
 	self._frame = row
 	self._swatch = swatch
 	self._callback = callback
 	return row
 end
-function El_ColorPicker:Get()
-	return self._color
-end
+function El_ColorPicker:Get() return self._color end
 function El_ColorPicker:Set(c)
 	self._color = c
-	if self._swatch then
-		self._swatch.BackgroundColor3 = c
-	end
-	if self._callback then
-		self._callback(c)
-	end
+	if self._swatch then self._swatch.BackgroundColor3 = c end
+	if self._callback then self._callback(c) end
 end
 
 end
@@ -2189,7 +2136,8 @@ function El_Label:Create(parent, theme, order)
 	local title = cfg.Title or "El_Label"
 	local desc = cfg.Desc or ""
 	local hasDesc = desc ~= ""
-	local height = hasDesc and 40 or 28
+	local tv = theme:Get()
+	local height = hasDesc and 42 or 30
 	local row = Util.Create("Frame", {
 		Size = UDim2.new(1, 0, 0, height),
 		BackgroundTransparency = 1,
@@ -2202,20 +2150,20 @@ function El_Label:Create(parent, theme, order)
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamMedium,
 		Text = title,
-		TextColor3 = theme.Text,
-		TextSize = 12.5,
+		TextColor3 = tv.Text,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = row,
 	})
 	if hasDesc then
 		Util.Create("TextLabel", {
 			Size = UDim2.new(1, 4, 0, 14),
-			Position = UDim2.new(0, 4, 0, 18),
+			Position = UDim2.new(0, 4, 0, 20),
 			BackgroundTransparency = 1,
 			Font = Enum.Font.Gotham,
 			Text = desc,
-			TextColor3 = theme.TextMuted,
-			TextSize = 10.5,
+			TextColor3 = tv.TextMuted,
+			TextSize = 11,
 			TextXAlignment = Enum.TextXAlignment.Left,
 			TextWrapped = true,
 			Parent = row,
@@ -2241,27 +2189,33 @@ function El_Paragraph:Create(parent, theme, order)
 	local cfg = self._config
 	local title = cfg.Title or ""
 	local body = cfg.Body or cfg.Content or ""
-	local height = 32
+	local tv = theme:Get()
+	local height = 36
 	if title ~= "" then height = height + 18 end
 	if body ~= "" then
-		-- Estimate wrapped lines
-		local estimatedLines = math.ceil(#body / 50)
-		height = height + (estimatedLines * 14) + 4
+		local estimatedLines = math.ceil(#body / 48)
+		height = height + (estimatedLines * 14) + 6
 	end
 	local row = Util.Create("Frame", {
 		Size = UDim2.new(1, 0, 0, height),
-		BackgroundColor3 = theme.Surface,
-		BackgroundTransparency = 0.7,
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.4,
 		BorderSizePixel = 0,
 		LayoutOrder = order or 0,
 		Parent = parent,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = row})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = row})
+	Util.Create("UIStroke", {
+		Color = tv.GlassStroke,
+		Transparency = 0.5,
+		Thickness = 1,
+		Parent = row,
+	})
 	Util.Create("UIPadding", {
-		PaddingLeft = UDim.new(0, 12),
-		PaddingRight = UDim.new(0, 12),
-		PaddingTop = UDim.new(0, 8),
-		PaddingBottom = UDim.new(0, 8),
+		PaddingLeft = UDim.new(0, 14),
+		PaddingRight = UDim.new(0, 14),
+		PaddingTop = UDim.new(0, 10),
+		PaddingBottom = UDim.new(0, 10),
 		Parent = row,
 	})
 	if title ~= "" then
@@ -2270,7 +2224,7 @@ function El_Paragraph:Create(parent, theme, order)
 			BackgroundTransparency = 1,
 			Font = Enum.Font.GothamBold,
 			Text = title,
-			TextColor3 = theme.Text,
+			TextColor3 = tv.Text,
 			TextSize = 13,
 			TextXAlignment = Enum.TextXAlignment.Left,
 			Parent = row,
@@ -2279,11 +2233,11 @@ function El_Paragraph:Create(parent, theme, order)
 	if body ~= "" then
 		Util.Create("TextLabel", {
 			Size = UDim2.new(1, 0, 0, 0),
-			Position = UDim2.new(0, 0, 0, title ~= "" and 20 or 0),
+			Position = UDim2.new(0, 0, 0, title ~= "" and 22 or 0),
 			BackgroundTransparency = 1,
 			Font = Enum.Font.Gotham,
 			Text = body,
-			TextColor3 = theme.TextSecondary,
+			TextColor3 = tv.TextSecondary,
 			TextSize = 12,
 			TextWrapped = true,
 			TextXAlignment = Enum.TextXAlignment.Left,
@@ -2309,10 +2263,11 @@ function El_Divider.new(config)
 	return self
 end
 function El_Divider:Create(parent, theme, order)
+	local tv = theme:Get()
 	local divider = Util.Create("Frame", {
 		Size = UDim2.new(1, 0, 0, 1),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 0.9,
+		BackgroundColor3 = tv.GlassStroke,
+		BackgroundTransparency = 0.5,
 		BorderSizePixel = 0,
 		LayoutOrder = order or 0,
 		Parent = parent,
@@ -2520,11 +2475,11 @@ function Tab:Create(windowRef, theme, sidebarLayout, contentFrame, order)
 	tab._windowRef = windowRef
 	tab._theme = theme
 
-	-- ═══ SIDEBAR BUTTON ═══
+	-- ═══ SIDEBAR BUTTON (glass pill) ═══
 	local tabBtn = Util.Create("TextButton", {
 		Size = UDim2.new(0, 40, 0, 40),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = tabIcon == "" and 0.95 or 1,
+		BackgroundColor3 = theme:Get().GlassTint,
+		BackgroundTransparency = tabIcon == "" and 0.5 or 1,
 		BorderSizePixel = 0,
 		AutoButtonColor = false,
 		Font = Enum.Font.GothamBold,
@@ -2534,7 +2489,7 @@ function Tab:Create(windowRef, theme, sidebarLayout, contentFrame, order)
 		LayoutOrder = order,
 		Parent = sidebarLayout,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = tabBtn})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 12), Parent = tabBtn})
 
 		if tabIcon ~= "" then
 		iconLabel = Util.Create("ImageLabel", {
@@ -2596,7 +2551,7 @@ function Tab:Create(windowRef, theme, sidebarLayout, contentFrame, order)
 		for _, t in ipairs(allTabs) do
 			t._content.Visible = false
 			t._indicator.Visible = false
-			Util.Tween(t._btn, {BackgroundTransparency = 0.95}, 0.15)
+			Util.Tween(t._btn, {BackgroundTransparency = 0.5}, 0.15)
 			if t._iconLabel then
 				Util.Tween(t._iconLabel, {ImageColor3 = theme:Get().TextMuted}, 0.15)
 			else
@@ -2607,7 +2562,7 @@ function Tab:Create(windowRef, theme, sidebarLayout, contentFrame, order)
 		-- Show this
 		tabContent.Visible = true
 		indicator.Visible = true
-		Util.Tween(tabBtn, {BackgroundTransparency = 0.88}, 0.15)
+		Util.Tween(tabBtn, {BackgroundTransparency = 0.15}, 0.15)
 		if iconLabel then
 			Util.Tween(iconLabel, {ImageColor3 = theme:Get().AccentLight}, 0.15)
 		else
@@ -2618,12 +2573,12 @@ function Tab:Create(windowRef, theme, sidebarLayout, contentFrame, order)
 	-- Hover
 	tabBtn.MouseEnter:Connect(function()
 		if windowRef._currentTab ~= tab then
-			Util.Tween(tabBtn, {BackgroundTransparency = 0.9}, 0.15)
+			Util.Tween(tabBtn, {BackgroundTransparency = 0.3}, 0.15)
 		end
 	end)
 	tabBtn.MouseLeave:Connect(function()
 		if windowRef._currentTab ~= tab then
-			Util.Tween(tabBtn, {BackgroundTransparency = 0.95}, 0.15)
+			Util.Tween(tabBtn, {BackgroundTransparency = 0.5}, 0.15)
 		end
 	end)
 
@@ -2655,9 +2610,9 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 	local title = cfg.Title or "GlassLib"
 	local icon = cfg.Icon or ""
 	local author = cfg.Author or ""
-	local size = cfg.Size or UDim2.new(0, 440, 0, 540)
+	local size = cfg.Size or UDim2.new(0, 500, 0, 560)
 	local toggleKey = cfg.ToggleKey or Enum.KeyCode.RightControl
-	local themeValues = theme:Get()
+	local tv = theme:Get()
 
 	-- ═══ SCREEN GUI ═══
 	local gui = Util.Create("ScreenGui", {
@@ -2669,62 +2624,96 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 	})
 	self._gui = gui
 
-	-- ═══ MAIN FRAME ═══
+	-- ═══ BACKDROP (darkened scene) ═══
+	local backdrop = Util.Create("Frame", {
+		Size = UDim2.new(1, 0, 1, 0),
+		BackgroundColor3 = Color3.fromRGB(0, 0, 0),
+		BackgroundTransparency = 0.55,
+		BorderSizePixel = 0,
+		Parent = gui,
+	})
+
+	-- ═══ MAIN GLASS PANEL ═══
 	local mainFrame = Util.Create("Frame", {
 		Size = size,
 		Position = UDim2.new(0.5, 0, 0.5, 0),
 		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = themeValues.Background,
-		BackgroundTransparency = 0.05,
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.4,
 		BorderSizePixel = 0,
 		Parent = gui,
 	})
 	self._mainFrame = mainFrame
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 20), Parent = mainFrame})
 
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 15), Parent = mainFrame})
+	-- Glass border (bright, frosted)
 	local mainStroke = Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.88,
-		Thickness = 1,
+		Color = tv.GlassStroke,
+		Transparency = 0.3,
+		Thickness = 1.5,
 		Parent = mainFrame,
 	})
 	self._mainStroke = mainStroke
 
-	-- Shadow
-	Acrylic.AddShadow(mainFrame, 50, 0.6)
-	-- Top highlight
-	Acrylic.AddTopHighlight(mainFrame, 0.92, 0.4)
-	-- Glow line
-	local glowLine = Acrylic.AddGlowLine(mainFrame, themeValues)
-	self._glowLine = glowLine
-
-	-- ═══ HEADER ═══
-	local header = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, 50),
-		BackgroundColor3 = themeValues.Background,
-		BackgroundTransparency = 0.05,
+	-- Inner glass gradient (top light, bottom darker)
+	local glassGradient = Util.Create("Frame", {
+		Size = UDim2.new(1, 0, 1, 0),
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BackgroundTransparency = 0.88,
 		BorderSizePixel = 0,
 		Parent = mainFrame,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 15), Parent = header})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 20), Parent = glassGradient})
+	Util.Create("UIGradient", {
+		Transparency = NumberSequence.new({
+			NumberSequenceKeypoint.new(0, 0.5),
+			NumberSequenceKeypoint.new(0.5, 0.85),
+			NumberSequenceKeypoint.new(1, 0.7),
+		}),
+		Rotation = 90,
+		Parent = glassGradient,
+	})
+
+	-- Shadow
+	Acrylic.AddShadow(mainFrame, 60, 0.5)
+
+	-- ═══ HEADER ═══
+	local header = Util.Create("Frame", {
+		Size = UDim2.new(1, 0, 0, 56),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
+		BorderSizePixel = 0,
+		Parent = mainFrame,
+	})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 20), Parent = header})
+	-- Square off bottom corners
+	Util.Create("Frame", {
+		Size = UDim2.new(1, 0, 0, 20),
+		Position = UDim2.new(0, 0, 1, -20),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
+		BorderSizePixel = 0,
+		Parent = header,
+	})
 	self._header = header
 
-	-- Header bottom border
+	-- Header bottom separator (glass edge)
 	Util.Create("Frame", {
-		Size = UDim2.new(1, -32, 0, 1),
-		Position = UDim2.new(0, 16, 1, 0),
+		Size = UDim2.new(1, 0, 0, 1),
+		Position = UDim2.new(0, 0, 1, 0),
 		AnchorPoint = Vector2.new(0, 1),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 0.9,
+		BackgroundColor3 = tv.GlassStroke,
+		BackgroundTransparency = 0.5,
 		BorderSizePixel = 0,
 		Parent = header,
 	})
 
 	-- Header icon
+	local iconSize = 32
 	if icon ~= "" then
 		Util.Create("ImageLabel", {
-			Size = UDim2.new(0, 28, 0, 28),
-			Position = UDim2.new(0, 18, 0.5, 0),
+			Size = UDim2.new(0, iconSize, 0, iconSize),
+			Position = UDim2.new(0, 20, 0.5, 0),
 			AnchorPoint = Vector2.new(0, 0.5),
 			BackgroundTransparency = 1,
 			Image = icon,
@@ -2732,59 +2721,60 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		})
 	else
 		local headerIcon = Util.Create("Frame", {
-			Size = UDim2.new(0, 28, 0, 28),
-			Position = UDim2.new(0, 18, 0.5, 0),
+			Size = UDim2.new(0, iconSize, 0, iconSize),
+			Position = UDim2.new(0, 20, 0.5, 0),
 			AnchorPoint = Vector2.new(0, 0.5),
-			BackgroundColor3 = themeValues.Accent,
-			BackgroundTransparency = 0.1,
+			BackgroundColor3 = tv.Accent,
+			BackgroundTransparency = 0.15,
 			BorderSizePixel = 0,
 			Parent = header,
 		})
-		Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = headerIcon})
+		Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = headerIcon})
 		Util.Create("TextLabel", {
 			Size = UDim2.new(1, 0, 1, 0),
 			BackgroundTransparency = 1,
 			Font = Enum.Font.GothamBold,
 			Text = string.sub(title, 1, 1),
 			TextColor3 = Color3.fromRGB(255, 255, 255),
-			TextSize = 14,
+			TextSize = 15,
 			Parent = headerIcon,
 		})
 	end
 
-	-- Title
+	-- Title + author
+	local titleX = 20 + iconSize + 12
 	Util.Create("TextLabel", {
-		Size = UDim2.new(1, -120, 0, 18),
-		Position = UDim2.new(0, 54, 0, 12),
+		Size = UDim2.new(1, -160, 0, 20),
+		Position = UDim2.new(0, titleX, 0, 13),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamBold,
 		Text = title,
-		TextColor3 = themeValues.Text,
-		TextSize = 14,
+		TextColor3 = tv.Text,
+		TextSize = 15,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = header,
 	})
 
 	if author ~= "" then
 		Util.Create("TextLabel", {
-			Size = UDim2.new(1, -120, 0, 12),
-			Position = UDim2.new(0, 54, 0, 30),
+			Size = UDim2.new(1, -160, 0, 14),
+			Position = UDim2.new(0, titleX, 0, 33),
 			BackgroundTransparency = 1,
 			Font = Enum.Font.Gotham,
 			Text = author,
-			TextColor3 = themeValues.TextMuted,
-			TextSize = 10,
+			TextColor3 = tv.TextMuted,
+			TextSize = 11,
 			TextXAlignment = Enum.TextXAlignment.Left,
 			Parent = header,
 		})
 	end
 
-	-- ═══ HEADER BUTTONS ═══
-	local btnSize = 28
-	local btnGap = 4
+	-- Header buttons
+	local btnSize = 30
+	local btnGap = 6
 	local headerBtns = Util.Create("Frame", {
 		Size = UDim2.new(0, (btnSize + btnGap) * 2, 0, btnSize),
-		Position = UDim2.new(1, -16, 0.5, 0),
+		Position = UDim2.new(1, -18, 0.5, 0),
 		AnchorPoint = Vector2.new(1, 0.5),
 		BackgroundTransparency = 1,
 		Parent = header,
@@ -2796,54 +2786,54 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		Parent = headerBtns,
 	})
 
-	-- Minimize button
+	-- Minimize
 	local minBtn = Util.Create("TextButton", {
 		Size = UDim2.new(0, btnSize, 0, btnSize),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 0.92,
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.6,
 		BorderSizePixel = 0,
-		Font = Enum.Font.Gotham,
+		Font = Enum.Font.GothamBold,
 		Text = "—",
-		TextColor3 = themeValues.TextMuted,
-		TextSize = 14,
+		TextColor3 = tv.TextSecondary,
+		TextSize = 16,
+		AutoButtonColor = false,
 		Parent = headerBtns,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = minBtn})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = minBtn})
 
-	-- Close button
+	-- Close
 	local closeBtn = Util.Create("TextButton", {
 		Size = UDim2.new(0, btnSize, 0, btnSize),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 0.92,
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.6,
 		BorderSizePixel = 0,
-		Font = Enum.Font.Gotham,
+		Font = Enum.Font.GothamBold,
 		Text = "✕",
-		TextColor3 = themeValues.TextMuted,
-		TextSize = 12,
+		TextColor3 = tv.TextSecondary,
+		TextSize = 13,
+		AutoButtonColor = false,
 		Parent = headerBtns,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = closeBtn})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = closeBtn})
 
-	-- Hover
+	-- Header button hovers
 	for _, btn in ipairs({minBtn, closeBtn}) do
 		btn.MouseEnter:Connect(function()
-			Util.Tween(btn, {BackgroundTransparency = 0.85}, 0.15)
+			Util.Tween(btn, {BackgroundTransparency = 0.35}, 0.15)
 		end)
 		btn.MouseLeave:Connect(function()
-			Util.Tween(btn, {BackgroundTransparency = 0.92}, 0.15)
+			Util.Tween(btn, {BackgroundTransparency = 0.6}, 0.15)
 		end)
 	end
-
 	closeBtn.MouseEnter:Connect(function()
-		Util.Tween(closeBtn, {TextColor3 = themeValues.Danger}, 0.15)
+		Util.Tween(closeBtn, {TextColor3 = tv.Danger}, 0.15)
 	end)
 	closeBtn.MouseLeave:Connect(function()
-		Util.Tween(closeBtn, {TextColor3 = themeValues.TextMuted}, 0.15)
+		Util.Tween(closeBtn, {TextColor3 = tv.TextSecondary}, 0.15)
 	end)
 
 	-- ═══ DRAGGING ═══
 	local dragging, dragStart, startPos
-
 	header.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			dragging = true
@@ -2851,13 +2841,11 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 			startPos = mainFrame.Position
 		end
 	end)
-
 	header.InputEnded:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			dragging = false
 		end
 	end)
-
 	Util.UIS.InputChanged:Connect(function(input)
 		if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
 			local delta = input.Position - dragStart
@@ -2868,27 +2856,25 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		end
 	end)
 
-	-- ═══ SIDEBAR ═══
-	local sidebarWidth = 54
+	-- ═══ SIDEBAR (floating dock style) ═══
+	local sidebarWidth = 56
+	local sidebarPad = 6
 	local sidebar = Util.Create("Frame", {
-		Size = UDim2.new(0, sidebarWidth, 1, -50),
-		Position = UDim2.new(0, 0, 0, 50),
-		BackgroundColor3 = themeValues.Background,
-		BackgroundTransparency = 0.05,
+		Size = UDim2.new(0, sidebarWidth, 1, -72),
+		Position = UDim2.new(0, sidebarPad, 0, 60),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.3,
 		BorderSizePixel = 0,
 		Parent = mainFrame,
 	})
-	self._sidebar = sidebar
-
-	-- Sidebar right border
-	Util.Create("Frame", {
-		Size = UDim2.new(0, 1, 1, -20),
-		Position = UDim2.new(1, 0, 0, 10),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 0.9,
-		BorderSizePixel = 0,
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = sidebar})
+	Util.Create("UIStroke", {
+		Color = tv.GlassStroke,
+		Transparency = 0.4,
+		Thickness = 1,
 		Parent = sidebar,
 	})
+	self._sidebar = sidebar
 
 	local sidebarLayout = Util.Create("Frame", {
 		Size = UDim2.new(1, 0, 1, 0),
@@ -2898,39 +2884,41 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 	Util.Create("UIListLayout", {
 		FillDirection = Enum.FillDirection.Vertical,
 		HorizontalAlignment = Enum.HorizontalAlignment.Center,
-		Padding = UDim.new(0, 2),
+		Padding = UDim.new(0, 4),
 		SortOrder = Enum.SortOrder.LayoutOrder,
 		Parent = sidebarLayout,
 	})
 	Util.Create("UIPadding", {
 		PaddingTop = UDim.new(0, 8),
+		PaddingBottom = UDim.new(0, 8),
 		Parent = sidebarLayout,
 	})
 	self._sidebarLayout = sidebarLayout
 
 	-- ═══ CONTENT AREA ═══
+	local contentLeft = sidebarWidth + sidebarPad * 2 + 8
 	local contentFrame = Util.Create("ScrollingFrame", {
-		Size = UDim2.new(1, -sidebarWidth, 1, -50),
-		Position = UDim2.new(0, sidebarWidth, 0, 50),
+		Size = UDim2.new(1, -contentLeft - 14, 1, -72),
+		Position = UDim2.new(0, contentLeft, 0, 60),
 		BackgroundTransparency = 1,
 		BorderSizePixel = 0,
 		ScrollBarThickness = 3,
-		ScrollBarImageColor3 = themeValues.Accent,
-		ScrollBarImageTransparency = 0.6,
+		ScrollBarImageColor3 = tv.Accent,
+		ScrollBarImageTransparency = 0.5,
 		CanvasSize = UDim2.new(0, 0, 0, 0),
 		AutomaticCanvasSize = Enum.AutomaticSize.Y,
 		Parent = mainFrame,
 	})
 	Util.Create("UIPadding", {
-		PaddingTop = UDim.new(0, 12),
-		PaddingBottom = UDim.new(0, 12),
-		PaddingLeft = UDim.new(0, 12),
-		PaddingRight = UDim.new(0, 12),
+		PaddingTop = UDim.new(0, 10),
+		PaddingBottom = UDim.new(0, 10),
+		PaddingLeft = UDim.new(0, 10),
+		PaddingRight = UDim.new(0, 10),
 		Parent = contentFrame,
 	})
 	Util.Create("UIListLayout", {
 		FillDirection = Enum.FillDirection.Vertical,
-		Padding = UDim.new(0, 6),
+		Padding = UDim.new(0, 5),
 		SortOrder = Enum.SortOrder.LayoutOrder,
 		Parent = contentFrame,
 	})
@@ -2942,19 +2930,18 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		window._guiOpen = not window._guiOpen
 		if window._guiOpen then
 			mainFrame.Visible = true
-			mainFrame.Size = UDim2.new(0, size.X.Offset * 0.9, 0, size.Y.Offset * 0.9)
-			mainFrame.BackgroundTransparency = 1
-			Util.SpringTween(mainFrame, {
-				Size = size,
-				BackgroundTransparency = 0.05,
-			}, 0.45)
+			backdrop.Visible = true
+			mainFrame.Size = UDim2.new(0, size.X.Offset * 0.92, 0, size.Y.Offset * 0.92)
+			mainFrame.BackgroundTransparency = 0.8
+			backdrop.BackgroundTransparency = 1
+			Util.SpringTween(mainFrame, {Size = size, BackgroundTransparency = 0.4}, 0.5)
+			Util.Tween(backdrop, {BackgroundTransparency = 0.55}, 0.3)
 		else
-			Util.Tween(mainFrame, {
-				Size = UDim2.new(0, size.X.Offset * 0.9, 0, size.Y.Offset * 0.9),
-				BackgroundTransparency = 1,
-			}, 0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
-			task.delay(0.3, function()
+			Util.Tween(mainFrame, {BackgroundTransparency = 0.8}, 0.2)
+			Util.Tween(backdrop, {BackgroundTransparency = 1}, 0.2)
+			task.delay(0.2, function()
 				mainFrame.Visible = false
+				backdrop.Visible = false
 			end)
 		end
 	end
@@ -2963,24 +2950,22 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		if not window._guiOpen then
 			window._guiOpen = true
 			mainFrame.Visible = true
-			mainFrame.Size = UDim2.new(0, size.X.Offset * 0.9, 0, size.Y.Offset * 0.9)
-			mainFrame.BackgroundTransparency = 1
-			Util.SpringTween(mainFrame, {
-				Size = size,
-				BackgroundTransparency = 0.05,
-			}, 0.45)
+			backdrop.Visible = true
+			mainFrame.BackgroundTransparency = 0.8
+			backdrop.BackgroundTransparency = 1
+			Util.SpringTween(mainFrame, {Size = size, BackgroundTransparency = 0.4}, 0.5)
+			Util.Tween(backdrop, {BackgroundTransparency = 0.55}, 0.3)
 		end
 	end
 
 	function window:Close()
 		if window._guiOpen then
 			window._guiOpen = false
-			Util.Tween(mainFrame, {
-				Size = UDim2.new(0, size.X.Offset * 0.9, 0, size.Y.Offset * 0.9),
-				BackgroundTransparency = 1,
-			}, 0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
-			task.delay(0.3, function()
+			Util.Tween(mainFrame, {BackgroundTransparency = 0.8}, 0.2)
+			Util.Tween(backdrop, {BackgroundTransparency = 1}, 0.2)
+			task.delay(0.2, function()
 				mainFrame.Visible = false
+				backdrop.Visible = false
 			end)
 		end
 	end
@@ -2989,9 +2974,7 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		gui:Destroy()
 	end
 
-	closeBtn.MouseButton1Click:Connect(function()
-		window:Close()
-	end)
+	closeBtn.MouseButton1Click:Connect(function() window:Close() end)
 
 	-- ═══ TAB CREATION ═══
 	function window:CreateTab(tabConfig)
@@ -2999,20 +2982,18 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		local tabObj = tab:Create(window, theme, sidebarLayout, contentFrame, #self._tabs + 1)
 		table.insert(self._tabs, tabObj)
 
-		-- Auto-select first tab
 		if #self._tabs == 1 then
 			tabObj._content.Visible = true
 			tabObj._indicator.Visible = true
-			Util.Tween(tabObj._btn, {BackgroundTransparency = 0.88}, 0.15)
+			Util.Tween(tabObj._btn, {BackgroundTransparency = 0.2}, 0.15)
 			if tabObj._iconLabel then
-				Util.Tween(tabObj._iconLabel, {ImageColor3 = themeValues.AccentLight}, 0.15)
+				Util.Tween(tabObj._iconLabel, {ImageColor3 = tv.AccentLight}, 0.15)
 			else
-				Util.Tween(tabObj._btn, {TextColor3 = themeValues.AccentLight}, 0.15)
+				Util.Tween(tabObj._btn, {TextColor3 = tv.AccentLight}, 0.15)
 			end
 			self._currentTab = tabObj
 		end
 
-		-- Click handler
 		tabObj._btn.MouseButton1Click:Connect(function()
 			self._currentTab = tabObj
 			tabObj:_Select(self._tabs)
@@ -3023,31 +3004,18 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 
 	-- ═══ THEME APPLICATION ═══
 	function window:_ApplyTheme(newTheme)
-		themeValues = newTheme
-		mainFrame.BackgroundColor3 = newTheme.Background
-		header.BackgroundColor3 = newTheme.Background
-		sidebar.BackgroundColor3 = newTheme.Background
-		mainStroke.Color = Color3.fromRGB(255, 255, 255)
-		glowLine.BackgroundColor3 = newTheme.Accent
-
-		-- Update accent gradient on all gradient elements
-		for _, desc in ipairs(mainFrame:GetDescendants()) do
-			if desc:IsA("UIGradient") and desc.Parent then
-				local parent = desc.Parent
-				if parent.Name ~= "HueBar" and (parent.BackgroundColor3 == newTheme.Accent or parent.Name == "TrackFill") then
-					desc.Color = ColorSequence.new({
-						ColorSequenceKeypoint.new(0, newTheme.Accent),
-						ColorSequenceKeypoint.new(1, newTheme.AccentLight),
-					})
-				end
-			end
-		end
+		tv = newTheme
+		mainFrame.BackgroundColor3 = newTheme.GlassTint
+		header.BackgroundColor3 = newTheme.GlassTint
+		sidebar.BackgroundColor3 = newTheme.GlassTint
+		mainStroke.Color = newTheme.GlassStroke
 	end
 
 	-- ═══ INTRO ANIMATION ═══
 	if cfg.IntroEnabled ~= false then
-		mainFrame.Size = UDim2.new(0, size.X.Offset * 0.85, 0, size.Y.Offset * 0.85)
+		mainFrame.Size = UDim2.new(0, size.X.Offset * 0.88, 0, size.Y.Offset * 0.88)
 		mainFrame.BackgroundTransparency = 1
+		backdrop.BackgroundTransparency = 1
 		for _, child in ipairs(mainFrame:GetDescendants()) do
 			if child:IsA("GuiObject") then
 				child.BackgroundTransparency = 1
@@ -3055,17 +3023,13 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 				child.TextTransparency = 1
 			end
 		end
-
 		task.delay(0.1, function()
-			Util.SpringTween(mainFrame, {
-				Size = size,
-				BackgroundTransparency = 0.05,
-			}, 0.6)
-
+			Util.SpringTween(mainFrame, {Size = size, BackgroundTransparency = 0.4}, 0.65)
+			Util.Tween(backdrop, {BackgroundTransparency = 0.55}, 0.4)
 			task.delay(0.15, function()
 				for _, child in ipairs(mainFrame:GetDescendants()) do
 					if child:IsA("GuiObject") and child.BackgroundTransparency == 1 then
-						Util.Tween(child, {BackgroundTransparency = child:GetAttribute("OrigTransparency") or 0.6}, 0.4)
+						Util.Tween(child, {BackgroundTransparency = child:GetAttribute("OrigTransparency") or 0.3}, 0.4)
 					elseif (child:IsA("TextLabel") or child:IsA("TextButton")) and child.TextTransparency == 1 then
 						Util.Tween(child, {TextTransparency = 0}, 0.4)
 					end

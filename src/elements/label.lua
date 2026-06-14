@@ -19,8 +19,8 @@ function Label:Create(parent, theme, order)
 	local title = cfg.Title or "Label"
 	local desc = cfg.Desc or ""
 	local hasDesc = desc ~= ""
-
-	local height = hasDesc and 40 or 28
+	local tv = theme:Get()
+	local height = hasDesc and 42 or 30
 
 	local row = Util.Create("Frame", {
 		Size = UDim2.new(1, 0, 0, height),
@@ -35,8 +35,8 @@ function Label:Create(parent, theme, order)
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamMedium,
 		Text = title,
-		TextColor3 = theme.Text,
-		TextSize = 12.5,
+		TextColor3 = tv.Text,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = row,
 	})
@@ -44,12 +44,12 @@ function Label:Create(parent, theme, order)
 	if hasDesc then
 		Util.Create("TextLabel", {
 			Size = UDim2.new(1, 4, 0, 14),
-			Position = UDim2.new(0, 4, 0, 18),
+			Position = UDim2.new(0, 4, 0, 20),
 			BackgroundTransparency = 1,
 			Font = Enum.Font.Gotham,
 			Text = desc,
-			TextColor3 = theme.TextMuted,
-			TextSize = 10.5,
+			TextColor3 = tv.TextMuted,
+			TextSize = 11,
 			TextXAlignment = Enum.TextXAlignment.Left,
 			TextWrapped = true,
 			Parent = row,

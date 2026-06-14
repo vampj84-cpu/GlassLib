@@ -1,6 +1,6 @@
 --[[
     GlassLib - Window Module
-    Window creation, dragging, sidebar, header, content area
+    Liquid glass window with layered depth
 ]]
 
 local Util = require(script.Parent.util)
@@ -26,9 +26,9 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 	local title = cfg.Title or "GlassLib"
 	local icon = cfg.Icon or ""
 	local author = cfg.Author or ""
-	local size = cfg.Size or UDim2.new(0, 440, 0, 540)
+	local size = cfg.Size or UDim2.new(0, 500, 0, 560)
 	local toggleKey = cfg.ToggleKey or Enum.KeyCode.RightControl
-	local themeValues = theme:Get()
+	local tv = theme:Get()
 
 	-- ═══ SCREEN GUI ═══
 	local gui = Util.Create("ScreenGui", {
@@ -40,62 +40,96 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 	})
 	self._gui = gui
 
-	-- ═══ MAIN FRAME ═══
+	-- ═══ BACKDROP (darkened scene) ═══
+	local backdrop = Util.Create("Frame", {
+		Size = UDim2.new(1, 0, 1, 0),
+		BackgroundColor3 = Color3.fromRGB(0, 0, 0),
+		BackgroundTransparency = 0.55,
+		BorderSizePixel = 0,
+		Parent = gui,
+	})
+
+	-- ═══ MAIN GLASS PANEL ═══
 	local mainFrame = Util.Create("Frame", {
 		Size = size,
 		Position = UDim2.new(0.5, 0, 0.5, 0),
 		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = themeValues.Background,
-		BackgroundTransparency = 0.05,
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.4,
 		BorderSizePixel = 0,
 		Parent = gui,
 	})
 	self._mainFrame = mainFrame
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 20), Parent = mainFrame})
 
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 15), Parent = mainFrame})
+	-- Glass border (bright, frosted)
 	local mainStroke = Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.88,
-		Thickness = 1,
+		Color = tv.GlassStroke,
+		Transparency = 0.3,
+		Thickness = 1.5,
 		Parent = mainFrame,
 	})
 	self._mainStroke = mainStroke
 
-	-- Shadow
-	Acrylic.AddShadow(mainFrame, 50, 0.6)
-	-- Top highlight
-	Acrylic.AddTopHighlight(mainFrame, 0.92, 0.4)
-	-- Glow line
-	local glowLine = Acrylic.AddGlowLine(mainFrame, themeValues)
-	self._glowLine = glowLine
-
-	-- ═══ HEADER ═══
-	local header = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, 50),
-		BackgroundColor3 = themeValues.Background,
-		BackgroundTransparency = 0.05,
+	-- Inner glass gradient (top light, bottom darker)
+	local glassGradient = Util.Create("Frame", {
+		Size = UDim2.new(1, 0, 1, 0),
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BackgroundTransparency = 0.88,
 		BorderSizePixel = 0,
 		Parent = mainFrame,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 15), Parent = header})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 20), Parent = glassGradient})
+	Util.Create("UIGradient", {
+		Transparency = NumberSequence.new({
+			NumberSequenceKeypoint.new(0, 0.5),
+			NumberSequenceKeypoint.new(0.5, 0.85),
+			NumberSequenceKeypoint.new(1, 0.7),
+		}),
+		Rotation = 90,
+		Parent = glassGradient,
+	})
+
+	-- Shadow
+	Acrylic.AddShadow(mainFrame, 60, 0.5)
+
+	-- ═══ HEADER ═══
+	local header = Util.Create("Frame", {
+		Size = UDim2.new(1, 0, 0, 56),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
+		BorderSizePixel = 0,
+		Parent = mainFrame,
+	})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 20), Parent = header})
+	-- Square off bottom corners
+	Util.Create("Frame", {
+		Size = UDim2.new(1, 0, 0, 20),
+		Position = UDim2.new(0, 0, 1, -20),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
+		BorderSizePixel = 0,
+		Parent = header,
+	})
 	self._header = header
 
-	-- Header bottom border
+	-- Header bottom separator (glass edge)
 	Util.Create("Frame", {
-		Size = UDim2.new(1, -32, 0, 1),
-		Position = UDim2.new(0, 16, 1, 0),
+		Size = UDim2.new(1, 0, 0, 1),
+		Position = UDim2.new(0, 0, 1, 0),
 		AnchorPoint = Vector2.new(0, 1),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 0.9,
+		BackgroundColor3 = tv.GlassStroke,
+		BackgroundTransparency = 0.5,
 		BorderSizePixel = 0,
 		Parent = header,
 	})
 
 	-- Header icon
+	local iconSize = 32
 	if icon ~= "" then
 		Util.Create("ImageLabel", {
-			Size = UDim2.new(0, 28, 0, 28),
-			Position = UDim2.new(0, 18, 0.5, 0),
+			Size = UDim2.new(0, iconSize, 0, iconSize),
+			Position = UDim2.new(0, 20, 0.5, 0),
 			AnchorPoint = Vector2.new(0, 0.5),
 			BackgroundTransparency = 1,
 			Image = icon,
@@ -103,59 +137,60 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		})
 	else
 		local headerIcon = Util.Create("Frame", {
-			Size = UDim2.new(0, 28, 0, 28),
-			Position = UDim2.new(0, 18, 0.5, 0),
+			Size = UDim2.new(0, iconSize, 0, iconSize),
+			Position = UDim2.new(0, 20, 0.5, 0),
 			AnchorPoint = Vector2.new(0, 0.5),
-			BackgroundColor3 = themeValues.Accent,
-			BackgroundTransparency = 0.1,
+			BackgroundColor3 = tv.Accent,
+			BackgroundTransparency = 0.15,
 			BorderSizePixel = 0,
 			Parent = header,
 		})
-		Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = headerIcon})
+		Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = headerIcon})
 		Util.Create("TextLabel", {
 			Size = UDim2.new(1, 0, 1, 0),
 			BackgroundTransparency = 1,
 			Font = Enum.Font.GothamBold,
 			Text = string.sub(title, 1, 1),
 			TextColor3 = Color3.fromRGB(255, 255, 255),
-			TextSize = 14,
+			TextSize = 15,
 			Parent = headerIcon,
 		})
 	end
 
-	-- Title
+	-- Title + author
+	local titleX = 20 + iconSize + 12
 	Util.Create("TextLabel", {
-		Size = UDim2.new(1, -120, 0, 18),
-		Position = UDim2.new(0, 54, 0, 12),
+		Size = UDim2.new(1, -160, 0, 20),
+		Position = UDim2.new(0, titleX, 0, 13),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamBold,
 		Text = title,
-		TextColor3 = themeValues.Text,
-		TextSize = 14,
+		TextColor3 = tv.Text,
+		TextSize = 15,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = header,
 	})
 
 	if author ~= "" then
 		Util.Create("TextLabel", {
-			Size = UDim2.new(1, -120, 0, 12),
-			Position = UDim2.new(0, 54, 0, 30),
+			Size = UDim2.new(1, -160, 0, 14),
+			Position = UDim2.new(0, titleX, 0, 33),
 			BackgroundTransparency = 1,
 			Font = Enum.Font.Gotham,
 			Text = author,
-			TextColor3 = themeValues.TextMuted,
-			TextSize = 10,
+			TextColor3 = tv.TextMuted,
+			TextSize = 11,
 			TextXAlignment = Enum.TextXAlignment.Left,
 			Parent = header,
 		})
 	end
 
-	-- ═══ HEADER BUTTONS ═══
-	local btnSize = 28
-	local btnGap = 4
+	-- Header buttons
+	local btnSize = 30
+	local btnGap = 6
 	local headerBtns = Util.Create("Frame", {
 		Size = UDim2.new(0, (btnSize + btnGap) * 2, 0, btnSize),
-		Position = UDim2.new(1, -16, 0.5, 0),
+		Position = UDim2.new(1, -18, 0.5, 0),
 		AnchorPoint = Vector2.new(1, 0.5),
 		BackgroundTransparency = 1,
 		Parent = header,
@@ -167,54 +202,54 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		Parent = headerBtns,
 	})
 
-	-- Minimize button
+	-- Minimize
 	local minBtn = Util.Create("TextButton", {
 		Size = UDim2.new(0, btnSize, 0, btnSize),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 0.92,
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.6,
 		BorderSizePixel = 0,
-		Font = Enum.Font.Gotham,
+		Font = Enum.Font.GothamBold,
 		Text = "—",
-		TextColor3 = themeValues.TextMuted,
-		TextSize = 14,
+		TextColor3 = tv.TextSecondary,
+		TextSize = 16,
+		AutoButtonColor = false,
 		Parent = headerBtns,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = minBtn})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = minBtn})
 
-	-- Close button
+	-- Close
 	local closeBtn = Util.Create("TextButton", {
 		Size = UDim2.new(0, btnSize, 0, btnSize),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 0.92,
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.6,
 		BorderSizePixel = 0,
-		Font = Enum.Font.Gotham,
+		Font = Enum.Font.GothamBold,
 		Text = "✕",
-		TextColor3 = themeValues.TextMuted,
-		TextSize = 12,
+		TextColor3 = tv.TextSecondary,
+		TextSize = 13,
+		AutoButtonColor = false,
 		Parent = headerBtns,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = closeBtn})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = closeBtn})
 
-	-- Hover
+	-- Header button hovers
 	for _, btn in ipairs({minBtn, closeBtn}) do
 		btn.MouseEnter:Connect(function()
-			Util.Tween(btn, {BackgroundTransparency = 0.85}, 0.15)
+			Util.Tween(btn, {BackgroundTransparency = 0.35}, 0.15)
 		end)
 		btn.MouseLeave:Connect(function()
-			Util.Tween(btn, {BackgroundTransparency = 0.92}, 0.15)
+			Util.Tween(btn, {BackgroundTransparency = 0.6}, 0.15)
 		end)
 	end
-
 	closeBtn.MouseEnter:Connect(function()
-		Util.Tween(closeBtn, {TextColor3 = themeValues.Danger}, 0.15)
+		Util.Tween(closeBtn, {TextColor3 = tv.Danger}, 0.15)
 	end)
 	closeBtn.MouseLeave:Connect(function()
-		Util.Tween(closeBtn, {TextColor3 = themeValues.TextMuted}, 0.15)
+		Util.Tween(closeBtn, {TextColor3 = tv.TextSecondary}, 0.15)
 	end)
 
 	-- ═══ DRAGGING ═══
 	local dragging, dragStart, startPos
-
 	header.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			dragging = true
@@ -222,13 +257,11 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 			startPos = mainFrame.Position
 		end
 	end)
-
 	header.InputEnded:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			dragging = false
 		end
 	end)
-
 	Util.UIS.InputChanged:Connect(function(input)
 		if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
 			local delta = input.Position - dragStart
@@ -239,27 +272,25 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		end
 	end)
 
-	-- ═══ SIDEBAR ═══
-	local sidebarWidth = 54
+	-- ═══ SIDEBAR (floating dock style) ═══
+	local sidebarWidth = 56
+	local sidebarPad = 6
 	local sidebar = Util.Create("Frame", {
-		Size = UDim2.new(0, sidebarWidth, 1, -50),
-		Position = UDim2.new(0, 0, 0, 50),
-		BackgroundColor3 = themeValues.Background,
-		BackgroundTransparency = 0.05,
+		Size = UDim2.new(0, sidebarWidth, 1, -72),
+		Position = UDim2.new(0, sidebarPad, 0, 60),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.3,
 		BorderSizePixel = 0,
 		Parent = mainFrame,
 	})
-	self._sidebar = sidebar
-
-	-- Sidebar right border
-	Util.Create("Frame", {
-		Size = UDim2.new(0, 1, 1, -20),
-		Position = UDim2.new(1, 0, 0, 10),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 0.9,
-		BorderSizePixel = 0,
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = sidebar})
+	Util.Create("UIStroke", {
+		Color = tv.GlassStroke,
+		Transparency = 0.4,
+		Thickness = 1,
 		Parent = sidebar,
 	})
+	self._sidebar = sidebar
 
 	local sidebarLayout = Util.Create("Frame", {
 		Size = UDim2.new(1, 0, 1, 0),
@@ -269,39 +300,41 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 	Util.Create("UIListLayout", {
 		FillDirection = Enum.FillDirection.Vertical,
 		HorizontalAlignment = Enum.HorizontalAlignment.Center,
-		Padding = UDim.new(0, 2),
+		Padding = UDim.new(0, 4),
 		SortOrder = Enum.SortOrder.LayoutOrder,
 		Parent = sidebarLayout,
 	})
 	Util.Create("UIPadding", {
 		PaddingTop = UDim.new(0, 8),
+		PaddingBottom = UDim.new(0, 8),
 		Parent = sidebarLayout,
 	})
 	self._sidebarLayout = sidebarLayout
 
 	-- ═══ CONTENT AREA ═══
+	local contentLeft = sidebarWidth + sidebarPad * 2 + 8
 	local contentFrame = Util.Create("ScrollingFrame", {
-		Size = UDim2.new(1, -sidebarWidth, 1, -50),
-		Position = UDim2.new(0, sidebarWidth, 0, 50),
+		Size = UDim2.new(1, -contentLeft - 14, 1, -72),
+		Position = UDim2.new(0, contentLeft, 0, 60),
 		BackgroundTransparency = 1,
 		BorderSizePixel = 0,
 		ScrollBarThickness = 3,
-		ScrollBarImageColor3 = themeValues.Accent,
-		ScrollBarImageTransparency = 0.6,
+		ScrollBarImageColor3 = tv.Accent,
+		ScrollBarImageTransparency = 0.5,
 		CanvasSize = UDim2.new(0, 0, 0, 0),
 		AutomaticCanvasSize = Enum.AutomaticSize.Y,
 		Parent = mainFrame,
 	})
 	Util.Create("UIPadding", {
-		PaddingTop = UDim.new(0, 12),
-		PaddingBottom = UDim.new(0, 12),
-		PaddingLeft = UDim.new(0, 12),
-		PaddingRight = UDim.new(0, 12),
+		PaddingTop = UDim.new(0, 10),
+		PaddingBottom = UDim.new(0, 10),
+		PaddingLeft = UDim.new(0, 10),
+		PaddingRight = UDim.new(0, 10),
 		Parent = contentFrame,
 	})
 	Util.Create("UIListLayout", {
 		FillDirection = Enum.FillDirection.Vertical,
-		Padding = UDim.new(0, 6),
+		Padding = UDim.new(0, 5),
 		SortOrder = Enum.SortOrder.LayoutOrder,
 		Parent = contentFrame,
 	})
@@ -313,19 +346,18 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		window._guiOpen = not window._guiOpen
 		if window._guiOpen then
 			mainFrame.Visible = true
-			mainFrame.Size = UDim2.new(0, size.X.Offset * 0.9, 0, size.Y.Offset * 0.9)
-			mainFrame.BackgroundTransparency = 1
-			Util.SpringTween(mainFrame, {
-				Size = size,
-				BackgroundTransparency = 0.05,
-			}, 0.45)
+			backdrop.Visible = true
+			mainFrame.Size = UDim2.new(0, size.X.Offset * 0.92, 0, size.Y.Offset * 0.92)
+			mainFrame.BackgroundTransparency = 0.8
+			backdrop.BackgroundTransparency = 1
+			Util.SpringTween(mainFrame, {Size = size, BackgroundTransparency = 0.4}, 0.5)
+			Util.Tween(backdrop, {BackgroundTransparency = 0.55}, 0.3)
 		else
-			Util.Tween(mainFrame, {
-				Size = UDim2.new(0, size.X.Offset * 0.9, 0, size.Y.Offset * 0.9),
-				BackgroundTransparency = 1,
-			}, 0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
-			task.delay(0.3, function()
+			Util.Tween(mainFrame, {BackgroundTransparency = 0.8}, 0.2)
+			Util.Tween(backdrop, {BackgroundTransparency = 1}, 0.2)
+			task.delay(0.2, function()
 				mainFrame.Visible = false
+				backdrop.Visible = false
 			end)
 		end
 	end
@@ -334,24 +366,22 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		if not window._guiOpen then
 			window._guiOpen = true
 			mainFrame.Visible = true
-			mainFrame.Size = UDim2.new(0, size.X.Offset * 0.9, 0, size.Y.Offset * 0.9)
-			mainFrame.BackgroundTransparency = 1
-			Util.SpringTween(mainFrame, {
-				Size = size,
-				BackgroundTransparency = 0.05,
-			}, 0.45)
+			backdrop.Visible = true
+			mainFrame.BackgroundTransparency = 0.8
+			backdrop.BackgroundTransparency = 1
+			Util.SpringTween(mainFrame, {Size = size, BackgroundTransparency = 0.4}, 0.5)
+			Util.Tween(backdrop, {BackgroundTransparency = 0.55}, 0.3)
 		end
 	end
 
 	function window:Close()
 		if window._guiOpen then
 			window._guiOpen = false
-			Util.Tween(mainFrame, {
-				Size = UDim2.new(0, size.X.Offset * 0.9, 0, size.Y.Offset * 0.9),
-				BackgroundTransparency = 1,
-			}, 0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
-			task.delay(0.3, function()
+			Util.Tween(mainFrame, {BackgroundTransparency = 0.8}, 0.2)
+			Util.Tween(backdrop, {BackgroundTransparency = 1}, 0.2)
+			task.delay(0.2, function()
 				mainFrame.Visible = false
+				backdrop.Visible = false
 			end)
 		end
 	end
@@ -360,9 +390,7 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		gui:Destroy()
 	end
 
-	closeBtn.MouseButton1Click:Connect(function()
-		window:Close()
-	end)
+	closeBtn.MouseButton1Click:Connect(function() window:Close() end)
 
 	-- ═══ TAB CREATION ═══
 	function window:CreateTab(tabConfig)
@@ -370,20 +398,18 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 		local tabObj = tab:Create(window, theme, sidebarLayout, contentFrame, #self._tabs + 1)
 		table.insert(self._tabs, tabObj)
 
-		-- Auto-select first tab
 		if #self._tabs == 1 then
 			tabObj._content.Visible = true
 			tabObj._indicator.Visible = true
-			Util.Tween(tabObj._btn, {BackgroundTransparency = 0.88}, 0.15)
+			Util.Tween(tabObj._btn, {BackgroundTransparency = 0.2}, 0.15)
 			if tabObj._iconLabel then
-				Util.Tween(tabObj._iconLabel, {ImageColor3 = themeValues.AccentLight}, 0.15)
+				Util.Tween(tabObj._iconLabel, {ImageColor3 = tv.AccentLight}, 0.15)
 			else
-				Util.Tween(tabObj._btn, {TextColor3 = themeValues.AccentLight}, 0.15)
+				Util.Tween(tabObj._btn, {TextColor3 = tv.AccentLight}, 0.15)
 			end
 			self._currentTab = tabObj
 		end
 
-		-- Click handler
 		tabObj._btn.MouseButton1Click:Connect(function()
 			self._currentTab = tabObj
 			tabObj:_Select(self._tabs)
@@ -394,31 +420,18 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 
 	-- ═══ THEME APPLICATION ═══
 	function window:_ApplyTheme(newTheme)
-		themeValues = newTheme
-		mainFrame.BackgroundColor3 = newTheme.Background
-		header.BackgroundColor3 = newTheme.Background
-		sidebar.BackgroundColor3 = newTheme.Background
-		mainStroke.Color = Color3.fromRGB(255, 255, 255)
-		glowLine.BackgroundColor3 = newTheme.Accent
-
-		-- Update accent gradient on all gradient elements
-		for _, desc in ipairs(mainFrame:GetDescendants()) do
-			if desc:IsA("UIGradient") and desc.Parent then
-				local parent = desc.Parent
-				if parent.Name ~= "HueBar" and (parent.BackgroundColor3 == newTheme.Accent or parent.Name == "TrackFill") then
-					desc.Color = ColorSequence.new({
-						ColorSequenceKeypoint.new(0, newTheme.Accent),
-						ColorSequenceKeypoint.new(1, newTheme.AccentLight),
-					})
-				end
-			end
-		end
+		tv = newTheme
+		mainFrame.BackgroundColor3 = newTheme.GlassTint
+		header.BackgroundColor3 = newTheme.GlassTint
+		sidebar.BackgroundColor3 = newTheme.GlassTint
+		mainStroke.Color = newTheme.GlassStroke
 	end
 
 	-- ═══ INTRO ANIMATION ═══
 	if cfg.IntroEnabled ~= false then
-		mainFrame.Size = UDim2.new(0, size.X.Offset * 0.85, 0, size.Y.Offset * 0.85)
+		mainFrame.Size = UDim2.new(0, size.X.Offset * 0.88, 0, size.Y.Offset * 0.88)
 		mainFrame.BackgroundTransparency = 1
+		backdrop.BackgroundTransparency = 1
 		for _, child in ipairs(mainFrame:GetDescendants()) do
 			if child:IsA("GuiObject") then
 				child.BackgroundTransparency = 1
@@ -426,17 +439,13 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 				child.TextTransparency = 1
 			end
 		end
-
 		task.delay(0.1, function()
-			Util.SpringTween(mainFrame, {
-				Size = size,
-				BackgroundTransparency = 0.05,
-			}, 0.6)
-
+			Util.SpringTween(mainFrame, {Size = size, BackgroundTransparency = 0.4}, 0.65)
+			Util.Tween(backdrop, {BackgroundTransparency = 0.55}, 0.4)
 			task.delay(0.15, function()
 				for _, child in ipairs(mainFrame:GetDescendants()) do
 					if child:IsA("GuiObject") and child.BackgroundTransparency == 1 then
-						Util.Tween(child, {BackgroundTransparency = child:GetAttribute("OrigTransparency") or 0.6}, 0.4)
+						Util.Tween(child, {BackgroundTransparency = child:GetAttribute("OrigTransparency") or 0.3}, 0.4)
 					elseif (child:IsA("TextLabel") or child:IsA("TextButton")) and child.TextTransparency == 1 then
 						Util.Tween(child, {TextTransparency = 0}, 0.4)
 					end

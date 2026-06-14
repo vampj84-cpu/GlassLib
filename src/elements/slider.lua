@@ -1,5 +1,6 @@
 --[[
     GlassLib - Slider Element
+    Glass track with liquid fill
 ]]
 
 local Util = require(script.Parent.Parent.util)
@@ -24,60 +25,60 @@ function Slider:Create(parent, theme, order)
 	local callback = cfg.Callback or function() end
 	self._value = default
 	local pct = (default - min) / (max - min)
+	local tv = theme:Get()
 
 	local row = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, 56),
-		BackgroundColor3 = theme.Surface,
-		BackgroundTransparency = 0.6,
+		Size = UDim2.new(1, 0, 0, 60),
+		BackgroundColor3 = tv.GlassTint,
+		BackgroundTransparency = 0.35,
 		BorderSizePixel = 0,
 		LayoutOrder = order or 0,
 		Parent = parent,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = row})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 14), Parent = row})
 	Util.Create("UIStroke", {
-		Color = Color3.fromRGB(255, 255, 255),
-		Transparency = 0.92,
+		Color = tv.GlassStroke,
+		Transparency = 0.45,
 		Thickness = 1,
 		Parent = row,
 	})
 	Util.Create("UIPadding", {
-		PaddingLeft = UDim.new(0, 12),
-		PaddingRight = UDim.new(0, 12),
-		PaddingTop = UDim.new(0, 10),
+		PaddingLeft = UDim.new(0, 14),
+		PaddingRight = UDim.new(0, 14),
+		PaddingTop = UDim.new(0, 12),
 		Parent = row,
 	})
 
-	-- Header
 	Util.Create("TextLabel", {
 		Size = UDim2.new(1, -50, 0, 16),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamMedium,
 		Text = title,
-		TextColor3 = theme.Text,
-		TextSize = 12.5,
+		TextColor3 = tv.Text,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Parent = row,
 	})
 
 	local valueLabel = Util.Create("TextLabel", {
-		Size = UDim2.new(0, 40, 0, 16),
+		Size = UDim2.new(0, 44, 0, 16),
 		Position = UDim2.new(1, 0, 0, 0),
 		AnchorPoint = Vector2.new(1, 0),
 		BackgroundTransparency = 1,
 		Font = Enum.Font.GothamBold,
 		Text = tostring(math.round(default)),
-		TextColor3 = theme.AccentLight,
-		TextSize = 12,
+		TextColor3 = tv.AccentLight,
+		TextSize = 13,
 		TextXAlignment = Enum.TextXAlignment.Right,
 		Parent = row,
 	})
 
 	-- Track
 	local trackBg = Util.Create("Frame", {
-		Size = UDim2.new(1, 0, 0, 5),
-		Position = UDim2.new(0, 0, 1, -12),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 0.92,
+		Size = UDim2.new(1, 0, 0, 6),
+		Position = UDim2.new(0, 0, 1, -14),
+		BackgroundColor3 = tv.GlassStroke,
+		BackgroundTransparency = 0.5,
 		BorderSizePixel = 0,
 		Parent = row,
 	})
@@ -85,15 +86,15 @@ function Slider:Create(parent, theme, order)
 
 	local trackFill = Util.Create("Frame", {
 		Size = UDim2.new(pct, 0, 1, 0),
-		BackgroundColor3 = theme.Accent,
+		BackgroundColor3 = tv.Accent,
 		BorderSizePixel = 0,
 		Parent = trackBg,
 	})
 	Util.Create("UICorner", {CornerRadius = UDim.new(1, 0), Parent = trackFill})
-	Util.MakeAccentGradient(trackFill, theme)
+	Util.MakeAccentGradient(trackFill, theme:Get())
 
 	local knob = Util.Create("Frame", {
-		Size = UDim2.new(0, 16, 0, 16),
+		Size = UDim2.new(0, 18, 0, 18),
 		Position = UDim2.new(pct, 0, 0.5, 0),
 		AnchorPoint = Vector2.new(0.5, 0.5),
 		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
@@ -101,6 +102,12 @@ function Slider:Create(parent, theme, order)
 		Parent = trackBg,
 	})
 	Util.Create("UICorner", {CornerRadius = UDim.new(1, 0), Parent = knob})
+	Util.Create("UIStroke", {
+		Color = tv.Accent,
+		Transparency = 0.3,
+		Thickness = 2,
+		Parent = knob,
+	})
 
 	local dragging = false
 
@@ -109,50 +116,35 @@ function Slider:Create(parent, theme, order)
 		relX = math.clamp(relX, 0, 1)
 		pct = relX
 		self._value = min + (max - min) * pct
-
 		trackFill.Size = UDim2.new(pct, 0, 1, 0)
 		knob.Position = UDim2.new(pct, 0, 0.5, 0)
 		valueLabel.Text = tostring(math.round(self._value))
-
 		callback(math.round(self._value))
 	end
 
 	trackBg.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			dragging = true
-			updateSlider(input.Position.X)
-		end
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then dragging = true; updateSlider(input.Position.X) end
 	end)
-
 	knob.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			dragging = true
-		end
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then dragging = true end
 	end)
-
 	Util.UIS.InputEnded:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			dragging = false
-		end
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then dragging = false end
 	end)
-
 	Util.UIS.InputChanged:Connect(function(input)
-		if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-			updateSlider(input.Position.X)
-		end
+		if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then updateSlider(input.Position.X) end
 	end)
 
 	knob.MouseEnter:Connect(function()
-		Util.SpringTween(knob, {Size = UDim2.new(0, 20, 0, 20)}, 0.2)
+		Util.SpringTween(knob, {Size = UDim2.new(0, 22, 0, 22)}, 0.2)
 	end)
 	knob.MouseLeave:Connect(function()
-		Util.SpringTween(knob, {Size = UDim2.new(0, 16, 0, 16)}, 0.2)
+		Util.SpringTween(knob, {Size = UDim2.new(0, 18, 0, 18)}, 0.2)
 	end)
 
-	Util.AddHover(row, 0.6, 0.45)
+	Util.AddHover(row, 0.35, 0.2)
 
 	self._frame = row
-	self._trackBg = trackBg
 	self._trackFill = trackFill
 	self._knob = knob
 	self._valueLabel = valueLabel
@@ -161,9 +153,7 @@ function Slider:Create(parent, theme, order)
 	return row
 end
 
-function Slider:Get()
-	return self._value
-end
+function Slider:Get() return self._value end
 
 function Slider:Set(val)
 	self._value = math.clamp(val, self._min, self._max)

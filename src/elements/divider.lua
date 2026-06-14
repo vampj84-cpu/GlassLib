@@ -1,5 +1,6 @@
 --[[
     GlassLib - Divider Element
+    Frosted glass divider line
 ]]
 
 local Util = require(script.Parent.Parent.util)
@@ -15,10 +16,11 @@ function Divider.new(config)
 end
 
 function Divider:Create(parent, theme, order)
+	local tv = theme:Get()
 	local divider = Util.Create("Frame", {
 		Size = UDim2.new(1, 0, 0, 1),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = 0.9,
+		BackgroundColor3 = tv.GlassStroke,
+		BackgroundTransparency = 0.5,
 		BorderSizePixel = 0,
 		LayoutOrder = order or 0,
 		Parent = parent,

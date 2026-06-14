@@ -28,11 +28,11 @@ function Tab:Create(windowRef, theme, sidebarLayout, contentFrame, order)
 	tab._windowRef = windowRef
 	tab._theme = theme
 
-	-- ═══ SIDEBAR BUTTON ═══
+	-- ═══ SIDEBAR BUTTON (glass pill) ═══
 	local tabBtn = Util.Create("TextButton", {
 		Size = UDim2.new(0, 40, 0, 40),
-		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-		BackgroundTransparency = tabIcon == "" and 0.95 or 1,
+		BackgroundColor3 = theme:Get().GlassTint,
+		BackgroundTransparency = tabIcon == "" and 0.5 or 1,
 		BorderSizePixel = 0,
 		AutoButtonColor = false,
 		Font = Enum.Font.GothamBold,
@@ -42,7 +42,7 @@ function Tab:Create(windowRef, theme, sidebarLayout, contentFrame, order)
 		LayoutOrder = order,
 		Parent = sidebarLayout,
 	})
-	Util.Create("UICorner", {CornerRadius = UDim.new(0, 10), Parent = tabBtn})
+	Util.Create("UICorner", {CornerRadius = UDim.new(0, 12), Parent = tabBtn})
 
 	local iconLabel = nil
 	if tabIcon ~= "" then
@@ -105,7 +105,7 @@ function Tab:Create(windowRef, theme, sidebarLayout, contentFrame, order)
 		for _, t in ipairs(allTabs) do
 			t._content.Visible = false
 			t._indicator.Visible = false
-			Util.Tween(t._btn, {BackgroundTransparency = 0.95}, 0.15)
+			Util.Tween(t._btn, {BackgroundTransparency = 0.5}, 0.15)
 			if t._iconLabel then
 				Util.Tween(t._iconLabel, {ImageColor3 = theme:Get().TextMuted}, 0.15)
 			else
@@ -116,7 +116,7 @@ function Tab:Create(windowRef, theme, sidebarLayout, contentFrame, order)
 		-- Show this
 		tabContent.Visible = true
 		indicator.Visible = true
-		Util.Tween(tabBtn, {BackgroundTransparency = 0.88}, 0.15)
+		Util.Tween(tabBtn, {BackgroundTransparency = 0.15}, 0.15)
 		if iconLabel then
 			Util.Tween(iconLabel, {ImageColor3 = theme:Get().AccentLight}, 0.15)
 		else
@@ -127,12 +127,12 @@ function Tab:Create(windowRef, theme, sidebarLayout, contentFrame, order)
 	-- Hover
 	tabBtn.MouseEnter:Connect(function()
 		if windowRef._currentTab ~= tab then
-			Util.Tween(tabBtn, {BackgroundTransparency = 0.9}, 0.15)
+			Util.Tween(tabBtn, {BackgroundTransparency = 0.3}, 0.15)
 		end
 	end)
 	tabBtn.MouseLeave:Connect(function()
 		if windowRef._currentTab ~= tab then
-			Util.Tween(tabBtn, {BackgroundTransparency = 0.95}, 0.15)
+			Util.Tween(tabBtn, {BackgroundTransparency = 0.5}, 0.15)
 		end
 	end)
 
