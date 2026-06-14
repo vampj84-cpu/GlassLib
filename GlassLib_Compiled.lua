@@ -10,7 +10,6 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 
 -- src/util.lua
-do
 local Util = {}
 
 -- ══════════════════════════════════════════════════════════════
@@ -229,10 +228,8 @@ function Util.AddButtonHover(btn, normalTrans, hoverTrans, scaleSize, normalSize
 end
 
 
-end
 
 -- src/theme.lua
-do
 
 local Theme = {}
 Theme.__index = Theme
@@ -425,10 +422,8 @@ function Theme:GetPresets()
 end
 
 
-end
 
 -- src/acrylic.lua
-do
 
 local Acrylic = {}
 
@@ -559,10 +554,8 @@ function Acrylic.AddTopHighlight(parent, transparency, height)
 end
 
 
-end
 
 -- src/config.lua
-do
 
 local Config = {}
 Config.__index = Config
@@ -702,10 +695,8 @@ function Config:ClearAutoload()
 end
 
 
-end
 
 -- src/notify.lua
-do
 
 local Notify = {}
 Notify.__index = Notify
@@ -885,10 +876,8 @@ function Notify:Error(title, content, duration)
 end
 
 
-end
 
 -- src/dialog.lua
-do
 
 local Dialog = {}
 Dialog.__index = Dialog
@@ -1064,10 +1053,8 @@ function Dialog:Destroy()
 end
 
 
-end
 
 -- src/toggle.lua
-do
 
 local ToggleBtn = {}
 ToggleBtn.__index = ToggleBtn
@@ -1207,10 +1194,8 @@ function ToggleBtn:Destroy()
 end
 
 
-end
 
 -- src/elements/button.lua
-do
 local El_Button = {}
 El_Button.__index = El_Button
 function El_Button.new(config)
@@ -1313,10 +1298,7 @@ function El_Button:Create(parent, theme, order)
 	return row
 end
 
-end
-
 -- src/elements/toggle.lua
-do
 local El_Toggle = {}
 El_Toggle.__index = El_Toggle
 function El_Toggle.new(config)
@@ -1450,10 +1432,7 @@ function El_Toggle:Set(value)
 	if self._state ~= value then self._updateToggle(true) end
 end
 
-end
-
 -- src/elements/slider.lua
-do
 local El_Slider = {}
 El_Slider.__index = El_Slider
 function El_Slider.new(config)
@@ -1596,10 +1575,7 @@ function El_Slider:Set(val)
 	self._valueLabel.Text = tostring(math.round(self._value))
 end
 
-end
-
 -- src/elements/dropdown.lua
-do
 local El_Dropdown = {}
 El_Dropdown.__index = El_Dropdown
 function El_Dropdown.new(config)
@@ -1787,10 +1763,7 @@ function El_Dropdown:Set(option)
 	if self._callback then self._callback(self._selected) end
 end
 
-end
-
 -- src/elements/textinput.lua
-do
 local El_TextInput = {}
 El_TextInput.__index = El_TextInput
 function El_TextInput.new(config)
@@ -1882,10 +1855,7 @@ end
 function El_TextInput:Get() return self._input and self._input.Text or "" end
 function El_TextInput:Set(value) if self._input then self._input.Text = value end end
 
-end
-
 -- src/elements/keybind.lua
-do
 local El_Keybind = {}
 El_Keybind.__index = El_Keybind
 function El_Keybind.new(config)
@@ -1976,10 +1946,7 @@ end
 function El_Keybind:Get() return self._bound end
 function El_Keybind:Set(keycode) self._bound = keycode end
 
-end
-
 -- src/elements/colorpicker.lua
-do
 local El_ColorPicker = {}
 El_ColorPicker.__index = El_ColorPicker
 function El_ColorPicker.new(config)
@@ -2119,10 +2086,7 @@ function El_ColorPicker:Set(c)
 	if self._callback then self._callback(c) end
 end
 
-end
-
 -- src/elements/label.lua
-do
 local El_Label = {}
 El_Label.__index = El_Label
 function El_Label.new(config)
@@ -2173,10 +2137,7 @@ function El_Label:Create(parent, theme, order)
 	return row
 end
 
-end
-
 -- src/elements/paragraph.lua
-do
 local El_Paragraph = {}
 El_Paragraph.__index = El_Paragraph
 function El_Paragraph.new(config)
@@ -2250,10 +2211,7 @@ function El_Paragraph:Create(parent, theme, order)
 	return row
 end
 
-end
-
 -- src/elements/divider.lua
-do
 local El_Divider = {}
 El_Divider.__index = El_Divider
 function El_Divider.new(config)
@@ -2276,10 +2234,7 @@ function El_Divider:Create(parent, theme, order)
 	return divider
 end
 
-end
-
 -- src/elements/init.lua
-do
 local Elements = {}
 
 Elements.Button = El_Button
@@ -2294,10 +2249,8 @@ Elements.Paragraph = El_Paragraph
 Elements.Divider = El_Divider
 
 
-end
 
 -- src/section.lua
-do
 
 local Section = {}
 Section.__index = Section
@@ -2448,10 +2401,8 @@ function Section:Create(parent, theme, windowRef)
 end
 
 
-end
 
 -- src/tab.lua
-do
 
 local Tab = {}
 Tab.__index = Tab
@@ -2586,10 +2537,8 @@ function Tab:Create(windowRef, theme, sidebarLayout, contentFrame, order)
 end
 
 
-end
 
 -- src/window.lua
-do
 
 local Window = {}
 Window.__index = Window
@@ -3050,12 +2999,8 @@ function Window:Create(theme, notifyRef, configRef, allWindows)
 end
 
 
-end
 
-
--- ══════════════════════════════════════════════════════════════
--- ENTRY POINT
--- ══════════════════════════════════════════════════════════════
+-- init.lua
 local GlassLib = {}
 GlassLib.__index = GlassLib
 
@@ -3153,3 +3098,4 @@ end
 -- ══════════════════════════════════════════════════════════════
 
 return GlassLib.new()
+
