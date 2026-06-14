@@ -116,16 +116,24 @@ for _, filePath in ipairs(MODULE_ORDER) do
 		moduleMap[moduleName] = true
 		
 		-- Clean up the content
-		-- Remove script.Parent references and replace with module lookups
-		content = content:gsub('require%(script%.Parent%.Parent%.(%w+)%)', function(name)
-			return format('_MODULES["%s"]', name)
-		end)
-		content = content:gsub('require%(script%.Parent%.(%w+)%)', function(name)
-			return format('_MODULES["%s"]', name)
-		end)
-		content = content:gsub('require%(script%.(%w+)%)', function(name)
-			return format('_MODULES["%s"]', name)
-		end)
+		-- Replace all script-relative requires with module lookups
+		-- Process line by line for safety
+		local outLines = {}
+		for ln in content:gmatch("([^\n]*)\n?") do
+			local modified = ln
+			-- require(script:WaitForChild("xxx"))
+			modified = modified:gsub('require%(%s*script:WaitForChild%("([^"]+)"%)%)', function(name)
+				return '_MODULES["' .. name .. '"]'
+			end)
+			-- require(script.Parent.elements.xxx) or require(script.Parent.Parent.xxx)
+			-- Just grab the last identifier before the closing paren
+			modified = modified:gsub('require%(script%.([%w%.]+)%)', function(path)
+				local last = path:match("(%w+)$")
+				return '_MODULES["' .. last .. '"]'
+			end)
+			insert(outLines, modified)
+		end
+		content = concat(outLines, "\n")
 		
 		-- Wrap in module function
 		insert(output, format('-- Module: %s', filePath))
