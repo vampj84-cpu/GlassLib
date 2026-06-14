@@ -1,0 +1,4 @@
+# GlassLib
+*.luac
+__pycache__/
+.DS_Store
